@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "309331951150",
+    "firebase_url": "https://muta7-f44d2.firebaseio.com",
+    "project_id": "muta7-f44d2",
+    "storage_bucket": "muta7-f44d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309331951150:android:97ee83f974c6e446",
+        "android_client_info": {
+          "package_name": "com.muta7.muta7"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309331951150-j9bqctjcrpf7qeu3mckgt33k7ifkm5f8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAe83PkRRqMNBvGwKtOhS3RfRy-m3ZF9OU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
