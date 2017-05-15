@@ -24,4 +24,8 @@ public abstract class Space {
     public String address;
     public String[] nearbyPlaces;
 
+    public String getSpaceID(){
+        return space_id;
+    }
+
 }
