@@ -19,7 +19,7 @@ public class GeneralInfo {
     public String youtube;
     //public User[] admins;
 
-    protected GeneralInfo(String spaceName, String description, String mobile, String email, String website,
+    public GeneralInfo(String spaceName, String description, String mobile, String email, String website,
                           String facebook, String twitter, String instagram, String youtube){
         //this.spaceID=spaceID;
         this.spaceName=spaceName;

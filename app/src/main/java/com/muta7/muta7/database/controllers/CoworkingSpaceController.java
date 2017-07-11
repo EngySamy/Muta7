@@ -7,6 +7,8 @@ import com.muta7.muta7.database.models.AMENITIES;
 import com.muta7.muta7.database.models.CoworkingSpace;
 import com.muta7.muta7.database.models.DAY;
 import com.muta7.muta7.database.models.DAY_HOURS;
+import com.muta7.muta7.database.models.GeneralInfo;
+import com.muta7.muta7.database.models.Location;
 import com.muta7.muta7.database.models.Room;
 
 import java.util.Map;
@@ -20,18 +22,13 @@ public final class CoworkingSpaceController {
     public static DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
 
 
-    public static void addNewSpace(String spaceID, String spaceName, String description, String mobile, String email, String website,
-                               String facebook, String twitter, String instagram, String youtube, String city, String district, long lat, long lng,
-                               String address, String[] nearbyPlaces){//, AMENITIES[] generalAmenities,String[] roomsNames, Room[] rooms,
-                                // DAY[] vacations,boolean halfHourAllowed, Map<DAY_HOURS, Boolean>[] workingHours ){
-        CoworkingSpace space=new CoworkingSpace(spaceName,description, mobile, email, website, facebook,twitter,instagram, youtube,
-                city, district, lat, lng, address,nearbyPlaces);//,  generalAmenities, rooms, vacations, halfHourAllowed,
-                //workingHours);
+    public static void addNewSpace(String spaceID,GeneralInfo gi){//,Location l){
+        CoworkingSpace space=new CoworkingSpace(gi);
         DatabaseReference spaceRef=mDatabase.child(GENERAL.SPACES).child(type).child(spaceID);
         //To add the general info
         SpaceController.setGeneralInfo(spaceRef,space.generalInfo);
         //To add Location
-        SpaceController.setLocation(spaceRef,space.location);
+        //SpaceController.setLocation(spaceRef,space.location);
     }
 
 

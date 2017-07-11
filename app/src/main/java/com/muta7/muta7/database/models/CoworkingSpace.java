@@ -22,13 +22,10 @@ public class CoworkingSpace {
     public boolean halfHourAllowed;
     public Map<DAY_HOURS, Boolean>[] workingHours;
 
-    public CoworkingSpace( String spaceName, String description, String mobile, String email, String website,
-                  String facebook, String twitter, String instagram, String youtube, String city, String district, long lat, long lng,
-                  String address, String[] nearbyPlaces){//,AMENITIES[] generalAmenities,Room[] rooms, DAY[] vacations,
-                  //boolean halfHourAllowed,Map<DAY_HOURS, Boolean>[] workingHours) { //String spaceID
+    public CoworkingSpace( GeneralInfo gi){//},Location l){
 
-        this.generalInfo=new GeneralInfo(spaceName,description, mobile, email, website,facebook, twitter, instagram, youtube);
-        this.location=new Location( city,  district, lat, lng,address, nearbyPlaces);
+        this.generalInfo=gi;
+        //this.location=l;
 
         /*this.generalAmenities=generalAmenities;
         this.rooms=rooms;

@@ -14,10 +14,14 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB2f5JyItqIhYjYHZ_Jww3w6i3udMKRW_s"/>
+
     </application>
 
 </manifest>

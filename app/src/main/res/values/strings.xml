@@ -17,6 +17,8 @@
     <string name="space_yt">Youtube</string>
     <string name="space_city">City</string>
     <string name="space_district">District</string>
+    <string name="space_map">Map</string>
+    <string name="go_to_map">Go to Map</string>
 
     <string name="general_details">General Details</string>
     <string name="contact_details">Official Contact Details</string>
