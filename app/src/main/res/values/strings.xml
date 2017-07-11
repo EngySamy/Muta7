@@ -1,8 +1,44 @@
 <resources>
-    <string name="app_name">Muta7</string>
+    <string name="app_name">Mutaa7</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <string name="space_name_text">Space Name</string>
+    <string name="space_description">Description</string>
+    <string name="space_mobile">Mobile</string>
+    <string name="space_email">Email</string>
+    <string name="space_website">Website</string>
+    <string name="space_fb">Facebook</string>
+    <string name="space_tw">Twitter</string>
+    <string name="space_insta">Instagram</string>
+    <string name="space_yt">Youtube</string>
+    <string name="space_city">City</string>
+    <string name="space_district">District</string>
+
+    <string name="general_details">General Details</string>
+    <string name="contact_details">Official Contact Details</string>
+    <string-array name="cities">
+        <item>Cairo</item>
+        <item>Alexandria</item>
+        <item>Mansoura</item>
+        <item>Kalyobya</item>
+    </string-array>
+
+    <string-array name="cairo_districts">
+        <item>Dokki</item>
+        <item>New Cairo</item>
+        <item>Madient Nasr</item>
+        <item>6 October</item>
+    </string-array>
+
+    <string-array name="Alex_districts">
+        <item>AAA</item>
+        <item>BBB</item>
+        <item>CCC</item>
+        <item>DDD</item>
+    </string-array>
+
 </resources>

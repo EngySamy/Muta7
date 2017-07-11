@@ -20,7 +20,7 @@ public final class CoworkingSpaceController {
     public static DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
 
 
-    public static void addNewSpace(String spaceID, String spaceName, String description, String[] mobile, String email, String website,
+    public static void addNewSpace(String spaceID, String spaceName, String description, String mobile, String email, String website,
                                String facebook, String twitter, String instagram, String youtube, String city, String district, long lat, long lng,
                                String address, String[] nearbyPlaces){//, AMENITIES[] generalAmenities,String[] roomsNames, Room[] rooms,
                                 // DAY[] vacations,boolean halfHourAllowed, Map<DAY_HOURS, Boolean>[] workingHours ){
@@ -33,6 +33,8 @@ public final class CoworkingSpaceController {
         //To add Location
         SpaceController.setLocation(spaceRef,space.location);
     }
+
+
 
     void setRooms(DatabaseReference db,String[] roomsNames, Room[] rooms) {
         int len=rooms.length;

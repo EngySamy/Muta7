@@ -22,7 +22,7 @@ public class CoworkingSpace {
     public boolean halfHourAllowed;
     public Map<DAY_HOURS, Boolean>[] workingHours;
 
-    public CoworkingSpace( String spaceName, String description, String[] mobile, String email, String website,
+    public CoworkingSpace( String spaceName, String description, String mobile, String email, String website,
                   String facebook, String twitter, String instagram, String youtube, String city, String district, long lat, long lng,
                   String address, String[] nearbyPlaces){//,AMENITIES[] generalAmenities,Room[] rooms, DAY[] vacations,
                   //boolean halfHourAllowed,Map<DAY_HOURS, Boolean>[] workingHours) { //String spaceID
