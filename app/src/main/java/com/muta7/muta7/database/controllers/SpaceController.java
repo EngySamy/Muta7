@@ -10,7 +10,7 @@ import com.muta7.muta7.database.models.Location;
  */
 
 //Put in this class the generic categories to use in any space
-public final class SpaceController {
+public class SpaceController {
 
     public static void setGeneralInfo(DatabaseReference db, GeneralInfo gen){
         db.child(GENERAL.GENERAL_INFO).setValue(gen);
