@@ -18,6 +18,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
     //private final List<Fragment> mFragmentList = new ArrayList<>();
     //private final List<String> mFragmentTitleList = new ArrayList<>();
     SparseArray<CreateSpaceFragment> registeredFragments = new SparseArray<CreateSpaceFragment>();
+    private String[] tabTitles = new String[]{"General Info", "Location", "Tab3"};
 
     public CreateSpacePagerAdapter(FragmentManager manager) {
         super(manager);
@@ -40,6 +41,11 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return 2;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return tabTitles[position];
     }
 
 

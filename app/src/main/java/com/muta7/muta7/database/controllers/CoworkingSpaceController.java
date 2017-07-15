@@ -1,7 +1,13 @@
 package com.muta7.muta7.database.controllers;
 
+import android.support.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.muta7.muta7.database.GENERAL;
 import com.muta7.muta7.database.models.AMENITIES;
 import com.muta7.muta7.database.models.CoworkingSpace;
@@ -24,29 +30,66 @@ public final class CoworkingSpaceController {
 
     public static void addNewSpace(String spaceID,GeneralInfo gi){//,Location l){
         CoworkingSpace space=new CoworkingSpace(gi);
-        DatabaseReference spaceRef=mDatabase.child(GENERAL.SPACES).child(type).child(spaceID);
         //To add the general info
-        SpaceController.setGeneralInfo(spaceRef,space.generalInfo);
+        SpaceController.setGeneralInfo(mDatabase,spaceID,space.generalInfo,type);
         //To add Location
-        //SpaceController.setLocation(spaceRef,space.location);
+        //SpaceController.setLocation(mDatabase,spaceID,space.location,type);
     }
 
 
 
-    void setRooms(DatabaseReference db,String[] roomsNames, Room[] rooms) {
+    void setRooms(DatabaseReference db,String id,String[] roomsNames, Room[] rooms) {
         int len=rooms.length;
+        //final boolean[][] done=new boolean[len][1];
         for(int i=0;i<len;i++){
-            db.child(GENERAL.ROOMS).child(roomsNames[i]).setValue(rooms[i]);
+            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.ROOMS).child(roomsNames[i]).setValue(rooms[i]).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    //done[i]=false;
+                }
+            });
         }
     }
+    public static Room[][] getRooms(DatabaseReference db,String id){
+        final Room[][] rooms=new Room[1][];
+        db.child(id).child(type).child(GENERAL.ROOMS).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                rooms[0]=dataSnapshot.getValue(Room[].class);
+            }
 
-    void setAmenities(DatabaseReference db,AMENITIES[] generalAmenities){
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return rooms;
+    }
+
+
+    void setAmenities(DatabaseReference db,String id,AMENITIES[] generalAmenities){
         int len=generalAmenities.length;
         for(int i=0;i<len;i++){
-            db.child(GENERAL.AMENITIES).push().setValue(generalAmenities[i]);
+            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).push().setValue(generalAmenities[i]);
         }
 
     }
 
+
+    public static AMENITIES[][] getAmenities(DatabaseReference db, String id){
+        final AMENITIES[][] amenities=new AMENITIES[1][];
+        db.child(id).child(type).child(GENERAL.AMENITIES).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                amenities[0]=dataSnapshot.getValue(AMENITIES[].class);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return amenities;
+    }
 
 }

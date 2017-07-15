@@ -6,6 +6,7 @@
 
     <string name="action_settings">Settings</string>
 
+    <string name="create_space_title">Create Space</string>
     <string name="space_name_text">Space Name</string>
     <string name="space_description">Description</string>
     <string name="space_mobile">Mobile</string>

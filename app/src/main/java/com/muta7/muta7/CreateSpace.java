@@ -1,13 +1,11 @@
 package com.muta7.muta7;
 
-import android.app.Fragment;
+
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+
 
 import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
@@ -33,6 +31,10 @@ public class CreateSpace extends AppCompatActivity implements SubmitListener {
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
+
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
 
     }
 
@@ -65,6 +67,13 @@ public class CreateSpace extends AppCompatActivity implements SubmitListener {
 
         }
     }
+
+    /*@Override
+    protected void attachBaseContext(Context context) {
+        super.attachBaseContext(context);
+        MultiDex.install(this);
+    }*/
+
 }
 
 
