@@ -98,6 +98,43 @@ public class GeneralInfoFragment extends CreateSpaceFragment{
         });
 
 
+        Fb.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                {
+                    String str=Fb.getText().toString();
+                    if(!TextUtils.isEmpty(str))
+                    {
+                        String regex = "((http|https)://)?(www[.])?facebook.com/.+";
+                        if(!str.matches(regex))
+                            Website.setError( "This is not a valid facebook url" );
+                    }
+                }
+            }
+        });
+
+        Yt.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus)
+            {
+                if (!hasFocus)
+                {
+                    String str=Yt.getText().toString();
+                    if(!TextUtils.isEmpty(str))
+                    {
+                        String regex = "((http|https):\\/\\/|)(www\\.|)youtube\\.com\\/(channel\\/|user\\/)[a-zA-Z0-9\\-]{1,}";
+                        if(!str.matches(regex))
+                            Website.setError( "This is not a valid youtube channel url" );
+                    }
+                }
+            }
+        });
+
+
 
         return rootView;
     }

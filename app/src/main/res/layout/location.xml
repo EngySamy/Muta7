@@ -1,87 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
-            android:minHeight="72dp">
-
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/space_city"
-                    android:id="@+id/SpaceCityValue"
-                    android:paddingRight="0dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:paddingLeft="0dp"
-                    android:gravity="center_vertical">
-                </AutoCompleteTextView>
-        </android.support.design.widget.TextInputLayout>
-
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingRight="16dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
-            android:minHeight="72dp">
-
-                <AutoCompleteTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="@string/space_district"
-                    android:id="@+id/SpaceDistrictValue"
-                    android:paddingRight="0dp"
-                    android:paddingTop="16dp"
-                    android:paddingBottom="8dp"
-                    android:paddingLeft="0dp"
-                    android:gravity="center_vertical">
-                </AutoCompleteTextView>
-        </android.support.design.widget.TextInputLayout>
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="0dp"
-        android:paddingLeft="16dp"
-        android:minHeight="72dp"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:minHeight="72dp">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/space_city"
+                        android:id="@+id/SpaceCityValue"
+                        android:paddingRight="0dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="0dp"
+                        android:gravity="center_vertical">
+                    </AutoCompleteTextView>
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingRight="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="16dp"
+                android:minHeight="72dp">
+
+                    <AutoCompleteTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/space_district"
+                        android:id="@+id/SpaceDistrictValue"
+                        android:paddingRight="0dp"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:paddingLeft="0dp"
+                        android:gravity="center_vertical">
+                    </AutoCompleteTextView>
+            </android.support.design.widget.TextInputLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/space_map"
-            android:id="@+id/SpaceMapText"
-            android:paddingRight="0dp"
-            android:paddingTop="0dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="0dp"
-            android:gravity="center_vertical"
-            android:layout_weight="1">
-        </TextView>
+            android:paddingLeft="16dp"
+            android:minHeight="72dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/space_map"
+                android:id="@+id/SpaceMapText"
+                android:paddingRight="0dp"
+                android:paddingTop="0dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:layout_weight="1"
+                android:textSize="18sp">
+            </TextView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/go_to_map"
+                android:id="@+id/goToMap"
+                android:layout_weight="2"
+                />
+
+        </LinearLayout>
+
 
         <Button
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="@string/go_to_map"
-            android:layout_weight="1"/>
+            android:layout_height="wrap_content"
+            android:text="Ok"
+            android:id="@+id/Submit"
+            android:layout_gravity="right"/>
 
     </LinearLayout>
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Ok"
-        android:id="@+id/Submit"/>
-
-</LinearLayout>
+</ScrollView>

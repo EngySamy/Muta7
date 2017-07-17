@@ -23,21 +23,27 @@
 
     <string name="general_details">General Details</string>
     <string name="contact_details">Official Contact Details</string>
-    <string-array name="cities">
-        <item>Cairo</item>
-        <item>Alexandria</item>
-        <item>Mansoura</item>
-        <item>Kalyobya</item>
+
+    <string name="general_amnt">General Amenities</string>
+    <string-array name="amenities_names">
+        <item></item>
     </string-array>
 
-    <string-array name="cairo_districts">
+    <string-array name="cities">
+        <item name="cairo">Cairo</item>
+        <item name="alex">Alexandria</item>
+        <item name="mans">Mansoura</item>
+        <item name="k">Kalyobya</item>
+    </string-array>
+
+    <string-array name="cairo">
         <item>Dokki</item>
         <item>New Cairo</item>
         <item>Madient Nasr</item>
         <item>6 October</item>
     </string-array>
 
-    <string-array name="Alex_districts">
+    <string-array name="alex">
         <item>AAA</item>
         <item>BBB</item>
         <item>CCC</item>
