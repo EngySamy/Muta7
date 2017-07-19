@@ -21,7 +21,7 @@ import java.util.Map;
  */
 
 //Put in this class the generic categories to use in any space
-public final class SpaceController {
+public class SpaceController {
 
     public static boolean[] setGeneralInfo(DatabaseReference db,String id, GeneralInfo gen,String type){
         final boolean[] done={true};
