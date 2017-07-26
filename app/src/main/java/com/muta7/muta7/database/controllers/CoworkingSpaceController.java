@@ -19,9 +19,9 @@ import java.util.Vector;
  * Created by DeLL on 23/04/2017.
  */
 
-public final class CoworkingSpaceController {
-    public final static String type="CoworkingSpace"; //type name in the database
-    public static DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
+public final class CoworkingSpaceController extends SpaceController {
+    public final static String type = "CoworkingSpace"; //type name in the database
+    public static DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
     public static void addNewSpace(String spaceID,GeneralInfo gi,Vector<String>amenities){//,Location l){
@@ -67,10 +67,10 @@ public final class CoworkingSpaceController {
 
     static void setAmenities(DatabaseReference db,String id,Vector<String> generalAmenities){
         int len=generalAmenities.size();
+
         for(int i=0;i<len;i++){
             db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).push().setValue(generalAmenities.elementAt(i));
         }
-
     }
 
 
@@ -91,5 +91,4 @@ public final class CoworkingSpaceController {
         });
         return amenities;
     }
-
 }
