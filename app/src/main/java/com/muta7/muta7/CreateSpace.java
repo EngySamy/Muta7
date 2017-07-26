@@ -1,14 +1,19 @@
 package com.muta7.muta7;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 
 
 import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
+
+import java.util.Vector;
 
 /**
  * Created by DeLL on 10/07/2017.
@@ -31,6 +36,10 @@ public class CreateSpace extends AppCompatActivity implements SubmitListener {
 
         // Set the adapter onto the view pager
         viewPager.setAdapter(adapter);
+
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        getSupportActionBar().setElevation(0);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
@@ -59,20 +68,23 @@ public class CreateSpace extends AppCompatActivity implements SubmitListener {
                     break;
                 }
             }
-            if(test)//add the new space
+            //if(test)//add the new space
             {
                 //general info
-                CoworkingSpaceController.addNewSpace("0001",(GeneralInfo)adapter.getRegisteredFragment(0).getData());
+                CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)adapter.getRegisteredFragment(0).getData(),
+                        (Vector<String>)adapter.getRegisteredFragment(2).getData());
+
             }
 
         }
     }
 
-    /*@Override
-    protected void attachBaseContext(Context context) {
-        super.attachBaseContext(context);
-        MultiDex.install(this);
-    }*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+
 
 }
 

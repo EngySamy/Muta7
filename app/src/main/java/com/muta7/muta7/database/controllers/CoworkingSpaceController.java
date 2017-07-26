@@ -9,15 +9,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.muta7.muta7.database.GENERAL;
-import com.muta7.muta7.database.models.AMENITIES;
 import com.muta7.muta7.database.models.CoworkingSpace;
-import com.muta7.muta7.database.models.DAY;
-import com.muta7.muta7.database.models.DAY_HOURS;
 import com.muta7.muta7.database.models.GeneralInfo;
-import com.muta7.muta7.database.models.Location;
 import com.muta7.muta7.database.models.Room;
 
-import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by DeLL on 23/04/2017.
@@ -28,12 +24,14 @@ public final class CoworkingSpaceController {
     public static DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
 
 
-    public static void addNewSpace(String spaceID,GeneralInfo gi){//,Location l){
+    public static void addNewSpace(String spaceID,GeneralInfo gi,Vector<String>amenities){//,Location l){
         CoworkingSpace space=new CoworkingSpace(gi);
         //To add the general info
         SpaceController.setGeneralInfo(mDatabase,spaceID,space.generalInfo,type);
         //To add Location
         //SpaceController.setLocation(mDatabase,spaceID,space.location,type);
+        //general amenities
+        setAmenities(mDatabase,spaceID,amenities);
     }
 
 
@@ -67,21 +65,23 @@ public final class CoworkingSpaceController {
     }
 
 
-    void setAmenities(DatabaseReference db,String id,AMENITIES[] generalAmenities){
-        int len=generalAmenities.length;
+    static void setAmenities(DatabaseReference db,String id,Vector<String> generalAmenities){
+        int len=generalAmenities.size();
         for(int i=0;i<len;i++){
-            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).push().setValue(generalAmenities[i]);
+            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).push().setValue(generalAmenities.elementAt(i));
         }
 
     }
 
 
-    public static AMENITIES[][] getAmenities(DatabaseReference db, String id){
-        final AMENITIES[][] amenities=new AMENITIES[1][];
+    //may be changed to string[][]
+    public static Vector<String>[] getAmenities(DatabaseReference db, String id){
+        @SuppressWarnings("unchecked")
+        final Vector<String>[] amenities= (Vector<String>[])new Vector[1];
         db.child(id).child(type).child(GENERAL.AMENITIES).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                amenities[0]=dataSnapshot.getValue(AMENITIES[].class);
+                amenities[0]=dataSnapshot.getValue(Vector.class);
             }
 
             @Override

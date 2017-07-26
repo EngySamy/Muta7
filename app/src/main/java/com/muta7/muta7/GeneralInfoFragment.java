@@ -1,18 +1,16 @@
 package com.muta7.muta7;
 
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
+import com.muta7.muta7.generalResourses.TextValidator;
 
 /**
  * Created by DeLL on 10/07/2017.
@@ -98,7 +96,7 @@ public class GeneralInfoFragment extends CreateSpaceFragment{
         });
 
 
-        Fb.setOnFocusChangeListener(new View.OnFocusChangeListener()
+        /*Fb.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
             @Override
             public void onFocusChange(View v, boolean hasFocus)
@@ -110,7 +108,7 @@ public class GeneralInfoFragment extends CreateSpaceFragment{
                     {
                         String regex = "((http|https)://)?(www[.])?facebook.com/.+";
                         if(!str.matches(regex))
-                            Website.setError( "This is not a valid facebook url" );
+                            Fb.setError( "This is not a valid facebook url" );
                     }
                 }
             }
@@ -132,7 +130,7 @@ public class GeneralInfoFragment extends CreateSpaceFragment{
                     }
                 }
             }
-        });
+        });*/
 
 
 

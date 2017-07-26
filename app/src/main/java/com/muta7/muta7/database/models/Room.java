@@ -9,9 +9,9 @@ public class Room {
     public int capacity;
     public double area;
     public ROOM_TYPE type;
-    public AMENITIES[] amenities;
+    public String[] amenities;
 
-    public Room(int capacity,double area,ROOM_TYPE type,AMENITIES[] amenities){
+    public Room(int capacity,double area,ROOM_TYPE type,String[] amenities){
         //this.roomName=roomName;
         this.capacity=capacity;
         this.area=area;

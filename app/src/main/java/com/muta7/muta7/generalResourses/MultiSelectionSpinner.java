@@ -18,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import com.muta7.muta7.R;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -42,7 +44,7 @@ public class MultiSelectionSpinner extends Spinner implements
         super(context);
 
         simple_adapter = new ArrayAdapter<String> (context,
-                android.R.layout.simple_spinner_item);/*{ /////////////ADDED
+                R.layout.contact_spinner_row_nothing_selected);/*{ /////////////ADDED
             @Override
             public boolean isEnabled(int position){
                 if(position == 0)

@@ -14,7 +14,7 @@ public class Location {
     public String address;
     public String[] nearbyPlaces;
 
-    protected Location(String city, String district, long lat, long lng, String address, String[] nearbyPlaces){
+    public Location(String city, String district, long lat, long lng, String address, String[] nearbyPlaces){
         this.city=city;
         this.district=district;
         this.lat=lat;
