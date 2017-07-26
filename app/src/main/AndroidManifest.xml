@@ -12,16 +12,19 @@
             android:name=".CreateSpace"
             android:label="@string/create_space_title"
             android:theme="@style/AppTheme.NoActionBar" >
+          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+      
+        <activity        
             android:name=".GetAddressMap"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
