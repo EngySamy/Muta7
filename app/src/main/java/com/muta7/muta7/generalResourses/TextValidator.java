@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.generalResourses;
 
 import android.text.Editable;
 import android.text.TextWatcher;
