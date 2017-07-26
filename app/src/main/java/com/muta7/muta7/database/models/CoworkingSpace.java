@@ -14,7 +14,7 @@ public class CoworkingSpace {
     public Location location;
 
     //Rooms and Amenities
-    public AMENITIES[] generalAmenities;
+    public String[] generalAmenities;
     public Room[] rooms;
 
     //opening hours
@@ -28,7 +28,7 @@ public class CoworkingSpace {
         //this.location=l;
 
         /*this.generalAmenities=generalAmenities;
-        this.rooms=rooms;
+        this.rooms_amenities=rooms_amenities;
 
         this.vacations=vacations;
         this.halfHourAllowed=halfHourAllowed;

@@ -15,29 +15,45 @@
     <string name="space_city">City</string>
     <string name="space_district">District</string>
     <string name="space_map">Map</string>
+    <string name="space_address">Space Full Address</string>
+    <string name="space_near_place">Nearby Place</string>
     <string name="go_to_map">Go to Map</string>
+    <string name="room_name">Room Name</string>
+    <string name="room_type">Room Type</string>
+    <string name="room_cap">Room Capacity</string>
+    <string name="add_room">Add Room +</string>
 
     <string name="general_details">General Details</string>
     <string name="contact_details">Official Contact Details</string>
+    <string name="vacation">Vacation</string>
+    <string-array name="week">
+        <item>Sat</item>
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+    </string-array>
+    <string name="sat">Saturday</string>
+    <string name="sun">Sunday</string>
+    <string name="mon">Monday</string>
+    <string name="tue">Tuesday</string>
+    <string name="wed">Wednesday</string>
+    <string name="thu">Thursday</string>
+    <string name="fri">Friday</string>
+    <string name="custom">Customize</string>
+    <string name="undo">Undo</string>
+
+    <string name="remove_room">Remove</string>
 
     <string name="general_amnt">General Amenities</string>
-    <string-array name="amenities_names">
-        <item></item>
+    <string-array name="rooms_types_array">
+        <item>Meeting Room</item>
+        <item>Hall</item>
+        <item>Office</item>
     </string-array>
 
-    <string-array name="cities">
-        <item name="cairo">Cairo</item>
-        <item name="alex">Alexandria</item>
-        <item name="mans">Mansoura</item>
-        <item name="k">Kalyobya</item>
-    </string-array>
-
-    <string-array name="cairo">
-        <item>Dokki</item>
-        <item>New Cairo</item>
-        <item>Madient Nasr</item>
-        <item>6 October</item>
-    </string-array>
 
     <string-array name="alex">
         <item>AAA</item>
@@ -45,6 +61,48 @@
         <item>CCC</item>
         <item>DDD</item>
     </string-array>
+    <string-array name="cairo">
+        <item>Dokki</item>
+        <item>New Cairo</item>
+        <item>Madient Nasr</item>
+        <item>6 October</item>
+    </string-array>
+    <string-array name="empty">
+
+    </string-array>
+    <string-array name="cities">
+        <item>Cairo</item>
+        <item>Alexandria</item>
+        <item>Al Mansoura</item>
+        <item>Kalyobya</item>
+    </string-array>
+    <array name="general_amenities_icons">
+        <item>@drawable/ac</item>
+        <item>@drawable/wifi</item>
+        <item>@drawable/kitchen</item>
+        <item>@drawable/boiler</item>
+        <item>@drawable/books</item>
+        <item>@drawable/playstation</item>
+        <item>@drawable/computer</item>
+
+    </array>
+    <string-array name="general_amenities_names">
+        <item>Air Conditioner</item>
+        <item>Wifi</item>
+        <item>Kitchen</item>
+        <item>Boiler</item>
+        <item>Books</item>
+        <item>Playstation</item>
+        <item>Computers</item>>
+    </string-array>
+
+
+    <string name="sign_up">Sign Up</string>
+    <string name="full_name">Full Name</string>
+    <string name="user_name">User Name</string>
+    <string name="user_mob">Mobile</string>
+    <string name="user_email">Email</string>
+    <string name="password">Password</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

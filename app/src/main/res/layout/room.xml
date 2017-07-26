@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:id="@+id/room_layout">
+
+
+    <TextView
+        android:id="@+id/options"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:padding="0dp"
+        android:layout_marginRight="16dp"
+        android:background="@android:drawable/arrow_down_float"
+        />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingTop="0dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="16dp"
+        android:minHeight="72dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/room_name"
+            android:id="@+id/RoomNameValue"
+            android:paddingRight="0dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="0dp"
+            android:gravity="center_vertical">
+        </android.support.design.widget.TextInputEditText>
+    </android.support.design.widget.TextInputLayout>
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="16dp"
+        android:minHeight="72dp">
+
+        <android.support.design.widget.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/room_cap"
+            android:id="@+id/RoomCapacityValue"
+            android:paddingRight="0dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="0dp"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            android:maxLength="4">
+        </android.support.design.widget.TextInputEditText>
+    </android.support.design.widget.TextInputLayout>
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="16dp"
+        android:minHeight="72dp">
+
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/room_type"
+            android:id="@+id/RoomTypeValue"
+            android:paddingRight="0dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="0dp"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            >
+        </Spinner>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="16dp"
+        android:minHeight="72dp">
+
+        <com.muta7.muta7.generalResourses.MultiSelectionSpinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/RoomAmentValue"
+            android:paddingRight="0dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:paddingLeft="0dp"
+            android:inputType="number"
+            android:gravity="center_vertical"
+            >
+        </com.muta7.muta7.generalResourses.MultiSelectionSpinner>
+    </android.support.design.widget.TextInputLayout>
+
+
+</LinearLayout>

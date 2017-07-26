@@ -1,13 +1,9 @@
 package com.muta7.muta7;
 
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by DeLL on 10/07/2017.
@@ -18,7 +14,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
     //private final List<Fragment> mFragmentList = new ArrayList<>();
     //private final List<String> mFragmentTitleList = new ArrayList<>();
     SparseArray<CreateSpaceFragment> registeredFragments = new SparseArray<CreateSpaceFragment>();
-    private String[] tabTitles = new String[]{"General Info", "Location", "Tab3"};
+    private String[] tabTitles = new String[]{"General Info", "Location", "Rooms & Amenities","Opening Hours"};
 
     public CreateSpacePagerAdapter(FragmentManager manager) {
         super(manager);
@@ -32,7 +28,9 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
                 break;
             case 1: obj= new LocationFragment();
                 break;
-            default:obj= new LocationFragment();
+            case 2: obj=new RoomsAndAmenitiesFragment();
+                break;
+            default:obj= new OpeningHoursFragment();
                 break;
         }
         return  obj;
@@ -40,7 +38,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 4;
     }
 
     @Override

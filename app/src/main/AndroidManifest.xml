@@ -7,25 +7,28 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar" >
-        <activity android:name=".activities.NavigationActivity">
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".CreateSpace"
+            android:label="@string/create_space_title"
+            android:theme="@style/AppTheme.NoActionBar" >
+          
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CreateSpace"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
-        <activity android:name=".GetAddressMap">
+      
+        <activity        
+            android:name=".GetAddressMap"
+            android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB2f5JyItqIhYjYHZ_Jww3w6i3udMKRW_s"/>
+            android:value="AIzaSyCTh2IjNTGjEcyF38S-mHz9B6v7hhtBJXQ"/>
 
     </application>
 
