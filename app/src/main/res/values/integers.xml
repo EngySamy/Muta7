@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <integer name="max_length_space_name">30</integer>
+    <integer name="max_length_desc">300</integer>
+    <integer name="max_length_mobile">11</integer>
+    <integer name="max_length_email">256</integer>
+    <integer name="max_length_website">256</integer>
+    <integer name="max_length_social_media">20</integer>
     <integer name="max_nearby_places">5</integer>
     <integer name="max_length_nearby_place">50</integer>
     <integer name="max_length_city_district">20</integer>

@@ -34,7 +34,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_space_name"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -54,7 +55,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_desc"/>
         </android.support.design.widget.TextInputLayout>
 
         <TextView
@@ -84,7 +86,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_mobile"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -104,7 +107,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_email"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -124,7 +128,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_website"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -144,7 +149,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_social_media"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -164,7 +170,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_social_media"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -184,7 +191,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_social_media"/>
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
@@ -204,7 +212,8 @@
                 android:paddingTop="16dp"
                 android:paddingBottom="8dp"
                 android:paddingLeft="0dp"
-                android:gravity="center_vertical" />
+                android:gravity="center_vertical"
+                android:maxLength="@integer/max_length_social_media"/>
         </android.support.design.widget.TextInputLayout>
 
 
