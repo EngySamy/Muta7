@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.database.models.Location;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -32,6 +35,7 @@ import static android.app.Activity.RESULT_OK;
 
 public class LocationFragment extends CreateSpaceFragmentBase {
 
+    View rootView;
     AutoCompleteTextView city,district;
     ArrayAdapter<CharSequence> districtAdapter ;
     String[] districtArray;
@@ -43,14 +47,15 @@ public class LocationFragment extends CreateSpaceFragmentBase {
     ViewGroup group;
     int id=0;
     long lat,lng;
-    Vector<Object> nearbyPlaces;
+    Vector<View> nearbyPlaces;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         inflat=inflater;
         group=container;
         nearbyPlaces=new Vector<>();
-
-        final View rootView = inflater.inflate(R.layout.location, container, false);
+        rootView = inflater.inflate(R.layout.location, container, false);
+        lat=0;
+        lng=0;
 
         city = (AutoCompleteTextView)rootView.findViewById(R.id.SpaceCityValue);
         final ArrayAdapter<CharSequence> cityAdapter =  ArrayAdapter.createFromResource(rootView.getContext(), R.array.cities,android.R.layout.simple_spinner_item);
@@ -62,13 +67,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         city.setValidator(new AutoCompleteTextView.Validator() {
             @Override
             public boolean isValid(CharSequence text) {
-                String[] array = getResources().getStringArray(R.array.cities);
-                Arrays.sort(array);
-                if ( Arrays.binarySearch(array, text.toString())>= 0) {
-                    city.setError(null);
-                    return true;
-                }
-                return false;
+                return validateCity(text);
             }
 
             @Override
@@ -121,7 +120,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         district.setOnTouchListener(new View.OnTouchListener(){
             @Override
             public boolean onTouch(View v, MotionEvent event){
-                validateCityAdaptDistrict(rootView);
+                AdaptDistrictToCity();
                 district.showDropDown();
                 return false;
             }
@@ -130,12 +129,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         district.setValidator(new AutoCompleteTextView.Validator() {
             @Override
             public boolean isValid(CharSequence text) {
-                Arrays.sort(districtArray);
-                if (Arrays.binarySearch(districtArray, text.toString()) > 0) {
-                    district.setError(null);
-                    return true;
-                }
-                return false;
+                return validateDistrict(text);
             }
 
             @Override
@@ -194,7 +188,6 @@ public class LocationFragment extends CreateSpaceFragmentBase {
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
 
                 try {
-
                     addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
                     String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
                     String city = addresses.get(0).getLocality();
@@ -218,35 +211,74 @@ public class LocationFragment extends CreateSpaceFragmentBase {
 
     @Override
     public boolean validate(){
-        //TODO : implement the validation
-        return true;
+        if(validateCity(city.getText().toString())){ //city first
+            AdaptDistrictToCity();
+            if(validateDistrict(district.getText().toString()) && (!(lat==0&&lng==0))   && validateNearbyPlaces() ){ //district then map then nearby
+                return true;
+            }
+        }
+
+        return false;
     }
 
     @Override
     public Object getData() {
-        //return new Location(city.getText().toString(),district.getText().toString(),lat,lng,fullAddress.getText().toString(),);
-        return null;
+        return new Location(city.getText().toString(),district.getText().toString(),lat,lng,
+                fullAddress.getText().toString(),getNearbyPlaces());
     }
 
     private void AddNearbyPlace(LinearLayout base){
+        if(nearbyPlaces.size()>=getResources().getInteger(R.integer.max_nearby_places)) {
+            Toast.makeText(getContext(),"You reached maximum nearby places",Toast.LENGTH_SHORT).show();
+            return;
+        }
         View place=inflat.inflate(R.layout.nearby_place,group,false);
+        TextInputEditText p= (TextInputEditText)(place.findViewById(R.id.SpaceNearPlaceValue));
+        //set max length
+        p.setFilters(new InputFilter[]{new InputFilter.LengthFilter(getResources().getInteger(R.integer.max_length_nearby_place))});
         base.addView(place);
         nearbyPlaces.add(place);
     }
 
     private void RemoveNearbyPlace(LinearLayout base){
         if(nearbyPlaces.size()>1) {
-            View toRemove = (View) nearbyPlaces.lastElement();
+            View toRemove = nearbyPlaces.lastElement();
             ((ViewManager) toRemove.getParent()).removeView(toRemove);
             nearbyPlaces.remove(toRemove);
         }
         else {
             Toast.makeText(getContext(),"You should have at least one nearby place",Toast.LENGTH_LONG).show();
         }
+    }
+
+    private String[] getNearbyPlaces(){
+        int len=nearbyPlaces.size();
+        String[] places=new String[len];
+        for(int i=0;i<len;i++){
+            places[i]=((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue)).getText().toString();
+        }
+        return places;
+    }
+
+    private boolean validateNearbyPlaces(){
+        int len=nearbyPlaces.size();
+        TextInputEditText place;
+        for(int i=0;i<len;i++){
+            place=((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue));
+            if(!validateOnePlace(place))
+                return false;
+        }
+        return true;
+    }
+    private boolean validateOnePlace(TextInputEditText place){
+        String str=place.getText().toString();
+        if(str.length()>getResources().getInteger(R.integer.max_length_nearby_place))
+            return false;
+        return true;
 
     }
 
-    private void validateCityAdaptDistrict(View rootView){
+    private void AdaptDistrictToCity(){
         String sel=city.getText().toString();
         if(sel.equals("Alexandria")) {
             //district.setError(null);
@@ -267,9 +299,25 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         district.setAdapter(districtAdapter);
         districtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         districtAdapter.notifyDataSetChanged();
-
-
     }
 
+    private boolean validateCity(CharSequence text){
+        String[] array = getResources().getStringArray(R.array.cities);
+        Arrays.sort(array);
+        if ( Arrays.binarySearch(array, text.toString())>= 0) {
+            city.setError(null);
+            return true;
+        }
+        return false;
+    }
+
+    private boolean validateDistrict(CharSequence text) {
+        Arrays.sort(districtArray);
+        if (Arrays.binarySearch(districtArray, text.toString()) > 0) {
+            district.setError(null);
+            return true;
+        }
+        return false;
+    }
 
 }

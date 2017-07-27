@@ -109,6 +109,7 @@ public class SignIn extends AppCompatActivity {
             // email is not verified, so just prompt the message to the user and restart this activity.
             // NOTE: don't forget to log out the user.
             FirebaseAuth.getInstance().signOut();
+            Toast.makeText(SignIn.this, "Log Out!!", Toast.LENGTH_SHORT).show();
 
             //restart this activity
 

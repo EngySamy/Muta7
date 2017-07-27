@@ -97,8 +97,8 @@ public class SignUp extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!validation())
-                    return;
+                //if(!validation())
+                  //  return;
 
                 progressBar.setVisibility(View.VISIBLE);
                 String password = Password.getText().toString().trim();
@@ -117,7 +117,10 @@ public class SignUp extends AppCompatActivity {
                                         Toast.LENGTH_SHORT).show();
                             } else {
                                 //startActivity(new Intent(SignUp.this, CreateSpaceActivity.class));
-                                finish();
+                                //finish();
+                                Toast.makeText(SignUp.this, "Authentication Succeed." + task.getException(),
+                                        Toast.LENGTH_SHORT).show();
+                                sendVerificationEmail();
                             }
                         }
                     });
@@ -126,9 +129,10 @@ public class SignUp extends AppCompatActivity {
 
 
         //called when auth changed (sign in or out)
-        authStateListener = new FirebaseAuth.AuthStateListener() {
+        /*authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                Toast.makeText(getApplicationContext(),"Auth Changed ",Toast.LENGTH_LONG).show();
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
@@ -139,7 +143,7 @@ public class SignUp extends AppCompatActivity {
                     // User is signed out
                 }
             }
-        };
+        };*/
 
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,9 +155,9 @@ public class SignUp extends AppCompatActivity {
     }
 
     private boolean validation(){
-        return(!(Validations.validateEmail(Email)&&Validations.validatePassword(Password)
+        return(Validations.validateEmail(Email)&&Validations.validatePassword(Password)
                 &&Validations.validateMobile(Mobile)&&Validations.validateUserName(UserName)
-                &&Validations.validateFullName(FullName)));
+                &&Validations.validateFullName(FullName));
 
     }
 

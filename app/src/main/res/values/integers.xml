@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="max_nearby_places">5</integer>
+    <integer name="max_length_nearby_place">50</integer>
+    <integer name="max_length_city_district">20</integer>
+    <integer name="max_length_full_address">100</integer>
+</resources>

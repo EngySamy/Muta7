@@ -18,6 +18,21 @@ public final class Validations {
         return true;
     }
 
+    public static boolean validateWebsite(TextInputEditText Website){
+        String str=Website.getText().toString();
+        if(!TextUtils.isEmpty(str)) {
+            if(str.length()>500) { //to change
+                Website.setError("This website address exceeds the max limit ");
+                return false;
+            }
+            if(!Patterns.WEB_URL.matcher(str).matches()) {
+                Website.setError("This website address is not valid");
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean validatePassword(TextInputEditText Password){
         String password = Password.getText().toString().trim();
         if (TextUtils.isEmpty(password)) {
@@ -67,4 +82,12 @@ public final class Validations {
         }
         return true;
     }
+
+    /*public static boolean validateLength(String text,int len){
+        if(text.length()>len){
+
+            return false;
+        }
+
+    }*/
 }

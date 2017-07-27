@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.muta7.muta7.R;
 import com.muta7.muta7.database.models.GeneralInfo;
 import com.muta7.muta7.generalResourses.TextValidator;
+import com.muta7.muta7.generalResourses.Validations;
 
 /**
  * Created by DeLL on 10/07/2017.
@@ -53,13 +54,8 @@ public class GeneralInfoFragment extends CreateSpaceFragmentBase {
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
-                {
-                    String NumRegex="\\d{11}";
-                    String str=Mobile.getText().toString();
-                    boolean t=str.matches(NumRegex);
-                    if(!t)
-                        Mobile.setError( "Mobile must be 11 numbers" );
+                if (!hasFocus) {
+                    Validations.validateMobile(Mobile);
                 }
             }
         });
@@ -69,11 +65,8 @@ public class GeneralInfoFragment extends CreateSpaceFragmentBase {
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
-                {
-                    String str=Email.getText().toString();
-                    if(TextUtils.isEmpty(str) || str.length()>256 || !Patterns.EMAIL_ADDRESS.matcher(str).matches() )
-                        Email.setError( "This email address is not valid" );
+                if (!hasFocus) {
+                    Validations.validateEmail(Email);
                 }
             }
         });
@@ -84,16 +77,8 @@ public class GeneralInfoFragment extends CreateSpaceFragmentBase {
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
-                if (!hasFocus)
-                {
-                    String str=Website.getText().toString();
-                    if(!TextUtils.isEmpty(str))
-                    {
-                        if(str.length()>500) //to change
-                            Website.setError( "This website address exceeds the max limit " );
-                        if(!Patterns.WEB_URL.matcher(str).matches())
-                            Website.setError( "This website address is not valid" );
-                    }
+                if (!hasFocus) {
+                    Validations.validateWebsite(Website);
                 }
             }
         });
