@@ -1,6 +1,8 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.muta7.muta7.R;
 import com.muta7.muta7.database.models.GeneralInfo;
 import com.muta7.muta7.generalResourses.TextValidator;
 
@@ -16,9 +19,9 @@ import com.muta7.muta7.generalResourses.TextValidator;
  * Created by DeLL on 10/07/2017.
  */
 
-public class GeneralInfoFragment extends CreateSpaceFragment{
+public class GeneralInfoFragment extends CreateSpaceFragmentBase {
 
-     EditText Name,Desc,Mobile,Email,Website,Fb,Tw,Insta,Yt;
+     TextInputEditText Name,Desc,Mobile,Email,Website,Fb,Tw,Insta,Yt;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -26,15 +29,15 @@ public class GeneralInfoFragment extends CreateSpaceFragment{
         final View rootView = inflater.inflate(R.layout.general_info, container, false);
 
 
-        Name=(EditText) rootView.findViewById(R.id.SpaceNameValue);
-        Desc=(EditText) rootView.findViewById(R.id.SpaceDescValue);
-        Mobile=(EditText) rootView.findViewById(R.id.SpaceMobileValue);
-        Email=(EditText) rootView.findViewById(R.id.SpaceEmailValue);
-        Website=(EditText) rootView.findViewById(R.id.SpaceWebsiteValue);
-        Fb=(EditText) rootView.findViewById(R.id.SpaceFbValue);
-        Tw=(EditText) rootView.findViewById(R.id.SpaceTwValue);
-        Insta=(EditText) rootView.findViewById(R.id.SpaceInstaValue);
-        Yt=(EditText) rootView.findViewById(R.id.SpaceYtValue);
+        Name=(TextInputEditText) rootView.findViewById(R.id.SpaceNameValue);
+        Desc=(TextInputEditText) rootView.findViewById(R.id.SpaceDescValue);
+        Mobile=(TextInputEditText) rootView.findViewById(R.id.SpaceMobileValue);
+        Email=(TextInputEditText) rootView.findViewById(R.id.SpaceEmailValue);
+        Website=(TextInputEditText) rootView.findViewById(R.id.SpaceWebsiteValue);
+        Fb=(TextInputEditText) rootView.findViewById(R.id.SpaceFbValue);
+        Tw=(TextInputEditText) rootView.findViewById(R.id.SpaceTwValue);
+        Insta=(TextInputEditText) rootView.findViewById(R.id.SpaceInstaValue);
+        Yt=(TextInputEditText) rootView.findViewById(R.id.SpaceYtValue);
 
         Desc.addTextChangedListener(new TextValidator(Desc) {
             @Override public void validate(TextView textView, String text) {

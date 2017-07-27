@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -13,7 +13,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
 
     //private final List<Fragment> mFragmentList = new ArrayList<>();
     //private final List<String> mFragmentTitleList = new ArrayList<>();
-    SparseArray<CreateSpaceFragment> registeredFragments = new SparseArray<CreateSpaceFragment>();
+    SparseArray<CreateSpaceFragmentBase> registeredFragments = new SparseArray<CreateSpaceFragmentBase>();
     private String[] tabTitles = new String[]{"General Info", "Location", "Rooms & Amenities","Opening Hours"};
 
     public CreateSpacePagerAdapter(FragmentManager manager) {
@@ -21,8 +21,8 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
     }
 
     @Override
-    public CreateSpaceFragment getItem(int position) {
-        CreateSpaceFragment obj;
+    public CreateSpaceFragmentBase getItem(int position) {
+        CreateSpaceFragmentBase obj;
         switch (position){
             case 0: obj= new GeneralInfoFragment();
                 break;
@@ -49,7 +49,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        CreateSpaceFragment fragment = (CreateSpaceFragment) super.instantiateItem(container, position);
+        CreateSpaceFragmentBase fragment = (CreateSpaceFragmentBase) super.instantiateItem(container, position);
         registeredFragments.put(position, fragment);
         return fragment;
     }
@@ -60,7 +60,7 @@ public class CreateSpacePagerAdapter extends FragmentPagerAdapter {
         super.destroyItem(container, position, object);
     }
 
-    public CreateSpaceFragment getRegisteredFragment(int position) {
+    public CreateSpaceFragmentBase getRegisteredFragment(int position) {
         return registeredFragments.get(position);
     }
 

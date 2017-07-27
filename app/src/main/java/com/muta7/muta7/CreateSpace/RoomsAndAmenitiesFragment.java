@@ -1,9 +1,8 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,8 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
 
+import com.muta7.muta7.R;
 import com.muta7.muta7.generalResourses.ExpandableHeightGridView;
 import com.muta7.muta7.generalResourses.MultiSelectionSpinner;
 import com.muta7.muta7.generalResourses.NothingSelectedSpinnerAdapter;
@@ -27,7 +26,7 @@ import java.util.Map;
  * Created by DeLL on 15/07/2017.
  */
 
-public class RoomsAndAmenitiesFragment extends CreateSpaceFragment {
+public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
     ExpandableHeightGridView gridView;
     LayoutInflater inflat;
     ViewGroup group;

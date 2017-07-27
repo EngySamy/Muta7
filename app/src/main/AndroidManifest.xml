@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".CreateSpace"
+            android:name=".SignUp"
             android:label="@string/create_space_title"
             android:theme="@style/AppTheme.NoActionBar" >
           
@@ -18,17 +18,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CreateSpace.CreateSpaceActivity"
+            android:label="@string/create_space_title"
+            android:theme="@style/AppTheme.NoActionBar" >
+
+        </activity>
       
         <activity        
-            android:name=".GetAddressMap"
+            android:name=".CreateSpace.GetAddressMap"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
+        <activity
+            android:name=".SignIn"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCTh2IjNTGjEcyF38S-mHz9B6v7hhtBJXQ"/>
+
+        <uses-permission android:name="android.permission.INTERNET" />
 
     </application>
 

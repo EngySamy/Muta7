@@ -1,23 +1,14 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
-import android.content.Context;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.ListFragment;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -25,15 +16,12 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import com.google.android.gms.maps.model.LatLng;
+import com.muta7.muta7.R;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.Vector;
 
 import static android.app.Activity.RESULT_OK;
@@ -42,7 +30,7 @@ import static android.app.Activity.RESULT_OK;
  * Created by DeLL on 11/07/2017.
  */
 
-public class LocationFragment extends CreateSpaceFragment {
+public class LocationFragment extends CreateSpaceFragmentBase {
 
     AutoCompleteTextView city,district;
     ArrayAdapter<CharSequence> districtAdapter ;

@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 import android.app.DialogFragment;
 
@@ -6,18 +6,16 @@ import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.text.format.DateUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.muta7.muta7.R;
 import com.muta7.muta7.generalResourses.TimePickerFragment;
 
 import java.text.ParseException;
@@ -30,7 +28,7 @@ import java.util.Vector;
  * Created by DeLL on 22/07/2017.
  */
 
-public class OpeningHoursFragment extends CreateSpaceFragment {
+public class OpeningHoursFragment extends CreateSpaceFragmentBase {
     SubmitListener mCallback;
     Vector<Vector<TextView> > workingHours;
     LinearLayout daysLayout;

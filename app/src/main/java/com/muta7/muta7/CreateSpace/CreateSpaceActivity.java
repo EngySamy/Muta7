@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 
 import android.content.Intent;
@@ -7,9 +7,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 
 
+import com.muta7.muta7.R;
 import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
 
@@ -19,7 +19,7 @@ import java.util.Vector;
  * Created by DeLL on 10/07/2017.
  */
 
-public class CreateSpace extends AppCompatActivity implements SubmitListener {
+public class CreateSpaceActivity extends AppCompatActivity implements SubmitListener {
     CreateSpacePagerAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class CreateSpace extends AppCompatActivity implements SubmitListener {
             //need to take all values from all fragments
             //GeneralInfoFragment generalInfoFragment =(GeneralInfoFragment) getSupportFragmentManager().findFragmentById(R.);
 
-            CreateSpaceFragment frag;
+            CreateSpaceFragmentBase frag;
             //Here loop for all the fragments to get data
             boolean test=true;
             for(int i=0;i<adapter.getCount();i++)

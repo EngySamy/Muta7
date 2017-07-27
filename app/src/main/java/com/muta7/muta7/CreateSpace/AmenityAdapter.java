@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.CreateSpace;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,7 +11,8 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Iterator;
+import com.muta7.muta7.R;
+
 import java.util.Vector;
 
 /**
