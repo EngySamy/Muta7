@@ -11,7 +11,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.muta7.muta7.database.GENERAL;
 import com.muta7.muta7.database.models.CoworkingSpace;
 import com.muta7.muta7.database.models.GeneralInfo;
+import com.muta7.muta7.database.models.Location;
 import com.muta7.muta7.database.models.Room;
+import com.muta7.muta7.database.models.RoomsAndAmenities;
 
 import java.util.Vector;
 
@@ -24,14 +26,14 @@ public final class CoworkingSpaceController extends SpaceController {
     public static DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
 
 
-    public static void addNewSpace(String spaceID,GeneralInfo gi,Vector<String>amenities){//,Location l){
-        CoworkingSpace space=new CoworkingSpace(gi);
+    public static void addNewSpace(String spaceID, GeneralInfo gi, Location l, RoomsAndAmenities roomsAndAmenities){//){
+        CoworkingSpace space=new CoworkingSpace(gi,l,roomsAndAmenities);
         //To add the general info
         SpaceController.setGeneralInfo(mDatabase,spaceID,space.generalInfo,type);
         //To add Location
-        //SpaceController.setLocation(mDatabase,spaceID,space.location,type);
+        SpaceController.setLocation(mDatabase,spaceID,space.location,type);
         //general amenities
-        setAmenities(mDatabase,spaceID,amenities);
+        setAmenities(mDatabase,spaceID,roomsAndAmenities.generalAmenities);
     }
 
 

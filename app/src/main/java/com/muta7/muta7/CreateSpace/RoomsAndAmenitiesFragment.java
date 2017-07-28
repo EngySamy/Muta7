@@ -1,7 +1,9 @@
 package com.muta7.muta7.CreateSpace;
 
 import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,13 +15,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.database.models.Room;
+import com.muta7.muta7.database.models.RoomsAndAmenities;
 import com.muta7.muta7.generalResourses.ExpandableHeightGridView;
 import com.muta7.muta7.generalResourses.MultiSelectionSpinner;
 import com.muta7.muta7.generalResourses.NothingSelectedSpinnerAdapter;
+import com.muta7.muta7.generalResourses.Validations;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -60,29 +68,18 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
             @Override
             public void onClick(View v) {
                 AddRoom(base,rootView,true);
-                for (Map.Entry<Integer, RoomHolder> entry : roomHolderMap.entrySet())
-                {
-                    //Log.w("taaaaag","HHHHHHHHHHhhh"+entry.getKey()+" //545//" + entry.getValue().roomType.getSelectedItem().toString());
-                }
             }
         });
 
         return rootView;
     }
 
-    @Override
-    public boolean validate() {
-        return false;
-    }
-
-
-    @Override
-    public Object getData() {
-        return amenityAdapter.getSelectedAmenities();
-
-    }
-
     private void AddRoom(LinearLayout base,View rootView,boolean removeButton){
+        int max=getResources().getInteger(R.integer.max_num_rooms);
+        if(roomHolderMap.size()>=max){
+            Toast.makeText(getContext(),"You reached the maximum number of rooms",Toast.LENGTH_SHORT).show();
+            return;
+        }
         final View room=inflat.inflate(R.layout.room,group,false);
         final RoomHolder holder=new RoomHolder();
         ////settings for the room layout
@@ -98,13 +95,27 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
                         getContext()));
 
         holder.roomAment=(MultiSelectionSpinner) room.findViewById(R.id.RoomAmentValue);
-        String[] amenities=getResources().getStringArray(R.array.general_amenities_names);
+        String[] amenities=getResources().getStringArray(R.array.room_amenities_names);
         holder.roomAment.setItems(amenities);
+        ///
+        (holder.roomAment).setListener(new MultiSelectionSpinner.OnMultipleItemsSelectedListener() {
+            @Override
+            public void selectedIndices(List<Integer> indices) {
+            }
+
+            @Override
+            public void selectedStrings(List<String> strings) {
+                Toast.makeText(getContext(), strings.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+
+        holder.roomCapacity=(TextInputEditText) room.findViewById(R.id.RoomCapacityValue);
+        //////////
         base.addView(room);
         roomHolderMap.put(id,holder);
         id++;
-        if(true){
-            //holder.options=(TextView) rootView.findViewById(R.id.options);
+        if(removeButton){
+            rootView.findViewById(R.id.options).setBackgroundResource(R.drawable.down_arrow);
             holder.popupMenu = new PopupMenu(getContext(), rootView.findViewById(R.id.options));
             holder.popupMenu.getMenu().add(Menu.NONE, 0, Menu.NONE, "Remove");
 
@@ -124,12 +135,53 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
                 }
             });
         }
+    }
 
 
+    @Override
+    public boolean validate() {
+        return amenityAdapter.checkIfAtLeastOneSelected()&&validateRooms();
+    }
+
+
+    @Override
+    public Object getData() {
+        return new RoomsAndAmenities(amenityAdapter.getSelectedAmenities(),GetRoomsData());
+    }
+
+    private Room[] GetRoomsData(){
+        Room[] rooms=new Room[roomHolderMap.size()];
+        int i=0;
+        for (Map.Entry<Integer, RoomHolder> entry : roomHolderMap.entrySet()) {
+            Room room=new Room(Integer.parseInt(entry.getValue().roomCapacity.getText().toString())
+                    ,entry.getValue().roomType.getSelectedItem().toString()
+                    ,entry.getValue().roomAment.getSelectedStrings());
+            rooms[i]=room;
+            i++;
+        }
+        return rooms;
 
     }
+
+    private boolean validateRooms(){
+        for (Map.Entry<Integer, RoomHolder> entry : roomHolderMap.entrySet()) {
+            if(entry.getValue().roomType.getSelectedItem()==null){
+                Toast.makeText(getContext(),"Select room type for all rooms",Toast.LENGTH_LONG);
+                return false;
+            }
+            if(entry.getValue().roomAment.getSelectedStrings().size()!=0){
+                Toast.makeText(getContext(),"Select room amenities for all rooms",Toast.LENGTH_LONG);
+                return false;
+            }
+            if(!Validations.validateRoomCapacity(entry.getValue().roomCapacity))
+                return false;
+        }
+        return true;
+    }
+
     class RoomHolder{
         Spinner roomType;
+        TextInputEditText roomCapacity;
         MultiSelectionSpinner roomAment;
         //TextView options;
         PopupMenu popupMenu;

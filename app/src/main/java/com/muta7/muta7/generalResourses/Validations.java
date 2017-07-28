@@ -89,7 +89,7 @@ public final class Validations {
     public static boolean validateDesc(TextInputEditText Desc, Context context){
         String str=Desc.getText().toString().trim();
         int max= context.getResources().getInteger(R.integer.max_length_desc);
-        if (TextUtils.isEmpty(str)) {
+        if (str.isEmpty()) {
             Desc.setError("Description is required");
             return false;
         }
@@ -125,4 +125,20 @@ public final class Validations {
         }
         return true;
     }
+
+    public static boolean validateRoomCapacity(TextInputEditText Capacity){
+        String cap = Capacity.getText().toString().trim();
+        if (TextUtils.isEmpty(cap)) {
+            Capacity.setError("Room capacity is required");
+            return false;
+        }
+        try {
+            int d = Integer.parseInt(cap);
+        } catch(NumberFormatException nfe) {
+            Capacity.setError("This is not valid capacity");
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -81,17 +81,20 @@ public class AmenityAdapter extends BaseAdapter {
 
     public Vector<String> getSelectedAmenities(){
         Vector<String> checked=new Vector<>();
-        /*Iterator i = items.iterator();
-        while (i.hasNext()) {
-            if(((AmenityHolder)i).amenityCheck.isChecked()){
-                checked.add(((AmenityHolder)i).amenityText.getText().toString());
-            }
-        }*/
         for(int i=0;i<items.size();i++){
             if(items.elementAt(i).amenityCheck.isChecked()){
                 checked.add(items.elementAt(i).amenityText.getText().toString());
             }
         }
         return checked;
+    }
+
+    public boolean checkIfAtLeastOneSelected(){
+        for(int i=0;i<items.size();i++){
+            if(items.elementAt(i).amenityCheck.isChecked()){
+               return true;
+            }
+        }
+        return false;
     }
 }

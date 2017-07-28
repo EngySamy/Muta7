@@ -12,6 +12,8 @@ import android.support.v7.widget.Toolbar;
 import com.muta7.muta7.R;
 import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
+import com.muta7.muta7.database.models.Location;
+import com.muta7.muta7.database.models.RoomsAndAmenities;
 
 import java.util.Vector;
 
@@ -50,7 +52,6 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
 
     @Override
     public void Submit(int s){
-
         if(s==1){ //submit is clicked
             //need to take all values from all fragments
             //GeneralInfoFragment generalInfoFragment =(GeneralInfoFragment) getSupportFragmentManager().findFragmentById(R.);
@@ -58,23 +59,19 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
             CreateSpaceFragmentBase frag;
             //Here loop for all the fragments to get data
             boolean test=true;
-            for(int i=0;i<adapter.getCount();i++)
-            {
+            for(int i=0;i<adapter.getCount()-1;i++) {
                 frag=adapter.getRegisteredFragment(i);
-                if(!frag.validate())
-                {
+                if(!frag.validate()) {
                     test=false;
-                    //show error msg
-                    break;
+                    return;
                 }
             }
             //if(test)//add the new space
-            {
                 //general info
-                CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)adapter.getRegisteredFragment(0).getData(),
-                        (Vector<String>)adapter.getRegisteredFragment(2).getData());
+            CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)adapter.getRegisteredFragment(0).getData(),
+                    (Location)adapter.getRegisteredFragment(1).getData(),
+                    (RoomsAndAmenities) adapter.getRegisteredFragment(2).getData());
 
-            }
 
         }
     }

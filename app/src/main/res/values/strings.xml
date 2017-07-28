@@ -96,6 +96,13 @@
         <item>Computers</item>>
     </string-array>
 
+    <string-array name="room_amenities_names">
+        <item>Air Conditioner</item>
+        <item>Wifi</item>
+        <item>Kitchen</item>
+        <item>Boiler</item>
+    </string-array>
+
 
     <string name="sign_up">Sign Up</string>
     <string name="sign_in">Sign In</string>

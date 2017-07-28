@@ -10,4 +10,6 @@
     <integer name="max_length_nearby_place">50</integer>
     <integer name="max_length_city_district">20</integer>
     <integer name="max_length_full_address">100</integer>
+    <integer name="max_length_room_name">20</integer>
+    <integer name="max_num_rooms">20</integer>
 </resources>

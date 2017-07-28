@@ -79,7 +79,7 @@ public class SignUp extends AppCompatActivity {
             public void onFocusChange(View v, boolean hasFocus)
             {
                 if (!hasFocus) {
-                    Validations.validateEmail(Email);
+                    Validations.validateEmail(Email,getApplicationContext());
                 }
             }
         });
@@ -155,7 +155,7 @@ public class SignUp extends AppCompatActivity {
     }
 
     private boolean validation(){
-        return(Validations.validateEmail(Email)&&Validations.validatePassword(Password)
+        return(Validations.validateEmail(Email,getApplicationContext())&&Validations.validatePassword(Password)
                 &&Validations.validateMobile(Mobile)&&Validations.validateUserName(UserName)
                 &&Validations.validateFullName(FullName));
 

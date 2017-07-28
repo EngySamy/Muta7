@@ -13,25 +13,15 @@ public class CoworkingSpace {
     public GeneralInfo generalInfo;
     public Location location;
 
-    //Rooms and Amenities
-    public String[] generalAmenities;
-    public Room[] rooms;
+    public RoomsAndAmenities roomsAndAmenities;
+    public OpeningHours openingHours;
 
-    //opening hours
-    public DAY[] vacations;
-    public boolean halfHourAllowed;
-    public Map<DAY_HOURS, Boolean>[] workingHours;
 
-    public CoworkingSpace( GeneralInfo gi){//},Location l){
+    public CoworkingSpace( GeneralInfo gi,Location l,RoomsAndAmenities roomsAndAmenities){//),OpeningHours openingHours){
 
         this.generalInfo=gi;
-        //this.location=l;
-
-        /*this.generalAmenities=generalAmenities;
-        this.rooms_amenities=rooms_amenities;
-
-        this.vacations=vacations;
-        this.halfHourAllowed=halfHourAllowed;
-        this.workingHours=workingHours;*/
+        this.location=l;
+        this.roomsAndAmenities=roomsAndAmenities;
+        //this.openingHours=openingHours;
     }
 }
