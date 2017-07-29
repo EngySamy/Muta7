@@ -48,6 +48,7 @@
     <string name="remove_room">Remove</string>
 
     <string name="general_amnt">General Amenities</string>
+    <string name="rooms_details">Rooms Details</string>
     <string-array name="rooms_types_array">
         <item>Meeting Room</item>
         <item>Hall</item>

@@ -114,6 +114,20 @@ public final class Validations {
         return true;
     }
 
+    public static boolean validateRoomName(TextInputEditText RoomName,Context context){
+        String name = RoomName.getText().toString().trim();
+        int max= context.getResources().getInteger(R.integer.max_length_room_name);
+        if (TextUtils.isEmpty(name)) {
+            RoomName.setError("Room name is required");
+            return false;
+        }
+        if (name.length() > max) {
+            RoomName.setError("This name exceeds the max limit");
+            return false;
+        }
+        return true;
+    }
+
     public static boolean validateSocialMedia(TextInputEditText media,Context context){
         String str = media.getText().toString().trim();
         int max= context.getResources().getInteger(R.integer.max_length_social_media);

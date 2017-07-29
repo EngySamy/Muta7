@@ -34,15 +34,18 @@ public final class CoworkingSpaceController extends SpaceController {
         SpaceController.setLocation(mDatabase,spaceID,space.location,type);
         //general amenities
         setAmenities(mDatabase,spaceID,roomsAndAmenities.generalAmenities);
+        //Rooms
+        setRooms(mDatabase,spaceID,roomsAndAmenities.roomsNames,roomsAndAmenities.rooms);
+
     }
 
 
 
-    void setRooms(DatabaseReference db,String id,String[] roomsNames, Room[] rooms) {
-        int len=rooms.length;
+    public static void setRooms(DatabaseReference db,String id,Vector<String> roomsNames, Vector<Room> rooms) {
+        int len=rooms.size();
         //final boolean[][] done=new boolean[len][1];
         for(int i=0;i<len;i++){
-            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.ROOMS).child(roomsNames[i]).setValue(rooms[i]).addOnFailureListener(new OnFailureListener() {
+            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.ROOMS).child(roomsNames.elementAt(i)).setValue(rooms.elementAt(i)).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     //done[i]=false;

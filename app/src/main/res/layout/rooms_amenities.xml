@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingRight="16dp"
-            android:paddingTop="32dp"
+            android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:paddingLeft="16dp"
             android:text="@string/general_amnt"
@@ -21,13 +21,25 @@
             android:numColumns="2"
             android:id="@+id/amnts_grid"
             android:layout_width="match_parent">
-
         </com.muta7.muta7.generalResourses.ExpandableHeightGridView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:paddingTop="32dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="16dp"
+            android:text="@string/rooms_details"
+            />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:id="@+id/rooms_am_layout">
+            android:id="@+id/rooms_am_layout"
+            android:layout_margin="16dp"
+            android:layout_marginTop="16dp">
 
         </LinearLayout>
 

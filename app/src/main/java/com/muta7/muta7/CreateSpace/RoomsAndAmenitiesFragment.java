@@ -29,6 +29,7 @@ import com.muta7.muta7.generalResourses.Validations;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Vector;
 
 /**
  * Created by DeLL on 15/07/2017.
@@ -83,6 +84,7 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         final View room=inflat.inflate(R.layout.room,group,false);
         final RoomHolder holder=new RoomHolder();
         ////settings for the room layout
+        holder.roomName=(TextInputEditText)room.findViewById(R.id.RoomNameValue);
         holder.roomType=(Spinner)room.findViewById(R.id.RoomTypeValue);
         ArrayAdapter<CharSequence> typesAdapter =  ArrayAdapter.createFromResource(rootView.getContext(), R.array.rooms_types_array,android.R.layout.simple_spinner_item);
         typesAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -146,17 +148,20 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
 
     @Override
     public Object getData() {
-        return new RoomsAndAmenities(amenityAdapter.getSelectedAmenities(),GetRoomsData());
+        Vector<String> roomsNames=new Vector<>(roomHolderMap.size());
+        Vector<Room> rooms=GetRoomsData(roomsNames);
+        return new RoomsAndAmenities(amenityAdapter.getSelectedAmenities(),rooms,roomsNames);
     }
 
-    private Room[] GetRoomsData(){
-        Room[] rooms=new Room[roomHolderMap.size()];
+    private Vector<Room> GetRoomsData(Vector<String> roomsNames){
+        Vector<Room> rooms=new Vector<>(roomHolderMap.size());
         int i=0;
         for (Map.Entry<Integer, RoomHolder> entry : roomHolderMap.entrySet()) {
             Room room=new Room(Integer.parseInt(entry.getValue().roomCapacity.getText().toString())
                     ,entry.getValue().roomType.getSelectedItem().toString()
                     ,entry.getValue().roomAment.getSelectedStrings());
-            rooms[i]=room;
+            rooms.add(room);
+            roomsNames.add(entry.getValue().roomName.getText().toString());
             i++;
         }
         return rooms;
@@ -165,21 +170,25 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
 
     private boolean validateRooms(){
         for (Map.Entry<Integer, RoomHolder> entry : roomHolderMap.entrySet()) {
-            if(entry.getValue().roomType.getSelectedItem()==null){
-                Toast.makeText(getContext(),"Select room type for all rooms",Toast.LENGTH_LONG);
+            if(!Validations.validateRoomName(entry.getValue().roomName,getContext()))
                 return false;
-            }
-            if(entry.getValue().roomAment.getSelectedStrings().size()!=0){
-                Toast.makeText(getContext(),"Select room amenities for all rooms",Toast.LENGTH_LONG);
-                return false;
-            }
             if(!Validations.validateRoomCapacity(entry.getValue().roomCapacity))
                 return false;
+            if(entry.getValue().roomType.getSelectedItem()==null){
+                Toast.makeText(getContext(),"Select room type for all rooms",Toast.LENGTH_LONG).show();
+                return false;
+            }
+            if(entry.getValue().roomAment.getSelectedStrings().size()==0){
+                Toast.makeText(getContext(),"Select room amenities for all rooms",Toast.LENGTH_LONG).show();
+                return false;
+            }
+
         }
         return true;
     }
 
     class RoomHolder{
+        TextInputEditText roomName;
         Spinner roomType;
         TextInputEditText roomCapacity;
         MultiSelectionSpinner roomAment;

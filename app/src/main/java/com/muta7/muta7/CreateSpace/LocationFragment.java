@@ -46,7 +46,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
     LayoutInflater inflat;
     ViewGroup group;
     int id=0;
-    long lat,lng;
+    double lat,lng;
     Vector<View> nearbyPlaces;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -183,6 +183,9 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             if (data.hasExtra("Lat") &&data.hasExtra("Lng")) {
                 double latitude=data.getExtras().getDouble("Lat");
                 double longitude=data.getExtras().getDouble("Lng");
+                lat=latitude;
+                lng=longitude;
+
                 Geocoder geocoder;
                 List<Address> addresses;
                 geocoder = new Geocoder(getContext(), Locale.getDefault());
@@ -213,8 +216,13 @@ public class LocationFragment extends CreateSpaceFragmentBase {
     public boolean validate(){
         if(validateCity(city.getText().toString())){ //city first
             AdaptDistrictToCity();
-            if(validateDistrict(district.getText().toString()) && (!(lat==0&&lng==0))   && validateNearbyPlaces() ){ //district then map then nearby
-                return true;
+            if(validateDistrict(district.getText().toString())){
+                if(lat==0&&lng==0 ){
+                 Toast.makeText(getContext(),"Please select your place on the map",Toast.LENGTH_LONG).show();
+                 return false;
+
+                } else if(validateNearbyPlaces() )//district then map then nearby
+                     return true;
             }
         }
 
@@ -251,11 +259,11 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         }
     }
 
-    private String[] getNearbyPlaces(){
+    private Vector<String> getNearbyPlaces(){
         int len=nearbyPlaces.size();
-        String[] places=new String[len];
+        Vector<String> places=new Vector<>();
         for(int i=0;i<len;i++){
-            places[i]=((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue)).getText().toString();
+            places.add(((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue)).getText().toString());
         }
         return places;
     }
@@ -272,8 +280,11 @@ public class LocationFragment extends CreateSpaceFragmentBase {
     }
     private boolean validateOnePlace(TextInputEditText place){
         String str=place.getText().toString();
-        if(str.length()>getResources().getInteger(R.integer.max_length_nearby_place))
+        if(str.length()>getResources().getInteger(R.integer.max_length_nearby_place)){
+            place.setError("This field exceeds the max limit");
             return false;
+        }
+
         return true;
 
     }

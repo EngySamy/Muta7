@@ -7,6 +7,8 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.widget.Toast;
 
 
 import com.muta7.muta7.R;
@@ -23,6 +25,7 @@ import java.util.Vector;
 
 public class CreateSpaceActivity extends AppCompatActivity implements SubmitListener {
     CreateSpacePagerAdapter adapter;
+    ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,7 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
         setContentView(R.layout.create_space);
 
         // Find the view pager that will allow the user to swipe between fragments
-        ViewPager viewPager = (ViewPager) findViewById(R.id.create_space_pager);
+        viewPager = (ViewPager) findViewById(R.id.create_space_pager);
 
         // Create an adapter that knows which fragment should be shown on each page
         adapter = new CreateSpacePagerAdapter(getSupportFragmentManager());
@@ -59,21 +62,35 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
             CreateSpaceFragmentBase frag;
             //Here loop for all the fragments to get data
             boolean test=true;
-            for(int i=0;i<adapter.getCount()-1;i++) {
-                frag=adapter.getRegisteredFragment(i);
+            for(int i=2;i<adapter.getCount()-1;i++) {
+                //frag=adapter.getRegisteredFragment(i);
+                frag=getFragment(i);
                 if(!frag.validate()) {
                     test=false;
+                    Toast.makeText(getApplicationContext(),"arg3 tany shof 3mlt a 8lt fe "+ i,Toast.LENGTH_LONG).show();
                     return;
+
                 }
+                Toast.makeText(getApplicationContext(),"validate "+i,Toast.LENGTH_LONG).show();
+                Log.e("vvvvvvvvvvvvv","vaaalidate "+i);
             }
             //if(test)//add the new space
                 //general info
-            CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)adapter.getRegisteredFragment(0).getData(),
-                    (Location)adapter.getRegisteredFragment(1).getData(),
-                    (RoomsAndAmenities) adapter.getRegisteredFragment(2).getData());
+            CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)getFragment(0).getData(),
+                    (Location)getFragment(1).getData(),
+                    (RoomsAndAmenities) getFragment(2).getData());
+            Toast.makeText(getApplicationContext(),"Done",Toast.LENGTH_LONG).show();
 
 
         }
+    }
+
+    private String getFragmentTag(int viewPagerId, int fragmentPosition)
+    {
+        return "android:switcher:" + viewPagerId + ":" + fragmentPosition;
+    }
+    private CreateSpaceFragmentBase getFragment(int i){
+        return (CreateSpaceFragmentBase)getSupportFragmentManager().findFragmentByTag(getFragmentTag(viewPager.getId(),i));
     }
 
     @Override

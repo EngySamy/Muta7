@@ -9,10 +9,12 @@ import java.util.Vector;
 public class RoomsAndAmenities {
 
     public Vector<String> generalAmenities;
-    public Room[] rooms;
+    public Vector<Room> rooms;
+    public Vector<String> roomsNames;
 
-    public RoomsAndAmenities(Vector<String> generalAmenities,Room[] rooms){
+    public RoomsAndAmenities(Vector<String> generalAmenities,Vector<Room> rooms,Vector<String> roomsNames){
         this.generalAmenities=generalAmenities;
         this.rooms=rooms;
+        this.roomsNames=roomsNames;
     }
 }
