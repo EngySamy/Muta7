@@ -200,8 +200,14 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
         }
     }
 
+    private void getCustomizedHours(){
+        if(workingHours!=null){
 
-        @Override
+        }
+    }
+
+
+    @Override
     public boolean validate() {
         return false;
     }

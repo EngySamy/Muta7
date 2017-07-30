@@ -9,9 +9,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".CreateSpace.CreateSpaceActivity"
-            android:label="@string/create_space_title"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".SignUp"
+            android:label="@string/app_name">
           
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,8 +31,11 @@
         </activity>
 
         <activity
-            android:name=".SignIn"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:name=".SignIn">
+        </activity>
+
+        <activity
+            android:name=".ForgotPassword">
         </activity>
 
         <activity

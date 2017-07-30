@@ -1,11 +1,13 @@
 package com.muta7.muta7;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -13,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.muta7.muta7.activities.NavigationActivity;
 import com.muta7.muta7.generalResourses.Validations;
 
 /**
@@ -22,16 +25,18 @@ import com.muta7.muta7.generalResourses.Validations;
 public class SignIn extends AppCompatActivity {
     private TextInputEditText Email,Password;
     private FirebaseAuth auth;
-    private Button SignIn;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_in);
 
+        auth = FirebaseAuth.getInstance();
         Email=(TextInputEditText) findViewById(R.id.UserEmailSignIn);
         Password=(TextInputEditText) findViewById(R.id.UserPasswordSignIn);
-        SignIn=(Button) findViewById(R.id.signIn);
+        progressBar=(ProgressBar)findViewById(R.id.progressBar_signIn);
+        Button signIn = (Button) findViewById(R.id.signIn);
 
         Email.setOnFocusChangeListener(new View.OnFocusChangeListener()
         {
@@ -48,17 +53,17 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    Validations.validatePassword(Password);
+                    Validations.validatePassword(Password,getApplicationContext());
                 }
             }
         });
 
-        SignIn.setOnClickListener(new View.OnClickListener() {
+        signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!validation())
                     return;
-                //progressBar.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.VISIBLE);
                 String password = Password.getText().toString().trim();
                 String email = Email.getText().toString().trim();
 
@@ -68,7 +73,7 @@ public class SignIn extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
 
                                 Toast.makeText(SignIn.this, "Sign in :onComplete:" + task.isSuccessful(), Toast.LENGTH_SHORT).show();
-                                //progressBar.setVisibility(View.GONE);
+                                progressBar.setVisibility(View.GONE);
                                 // If sign in fails, display a message to the user. If sign in succeeds
                                 // the auth state listener will be notified and logic to handle the
                                 // signed in user can be handled in the listener.
@@ -85,35 +90,41 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
+        Button ForgotPassword=(Button) findViewById(R.id.btn_reset_password_in_sign_in);
+        ForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignIn.this, com.muta7.muta7.ForgotPassword.class));
+            }
+        });
 
 
     }
 
     private boolean validation(){
-        return(!(Validations.validateEmail(Email,getApplicationContext())&&Validations.validatePassword(Password)));
-
+        return(Validations.validateEmail(Email,getApplicationContext())&&Validations.validatePassword(Password,getApplicationContext()));
     }
 
-    private void checkIfEmailVerified()
-    {
+    private void checkIfEmailVerified() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-        if (user.isEmailVerified())
-        {
-            // user is verified, so you can finish this activity or send user to activity which you want.
-            //finish();
-            Toast.makeText(SignIn.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+        if(user!=null){
+            if (user.isEmailVerified()) {
+                // user is verified
+                Toast.makeText(SignIn.this, "Successfully logged in", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(SignIn.this, NavigationActivity.class));
+            }
+            else {
+                // email is not verified
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(SignIn.this, "Not verified", Toast.LENGTH_SHORT).show();
+            }
         }
-        else
-        {
-            // email is not verified, so just prompt the message to the user and restart this activity.
-            // NOTE: don't forget to log out the user.
-            FirebaseAuth.getInstance().signOut();
-            Toast.makeText(SignIn.this, "Log Out!!", Toast.LENGTH_SHORT).show();
-
-            //restart this activity
-
+        else {
+            Toast.makeText(getApplicationContext(),"Something went wrong, please try again.",Toast.LENGTH_LONG).show();
         }
+
+
     }
 
 }

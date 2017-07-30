@@ -76,6 +76,9 @@ public final class CoworkingSpaceController extends SpaceController {
         for(int i=0;i<len;i++){
             db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).push().setValue(generalAmenities.elementAt(i));
         }
+
+        //db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.AMENITIES).setValue(generalAmenities);
+
     }
 
 

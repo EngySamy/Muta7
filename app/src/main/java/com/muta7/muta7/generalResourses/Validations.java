@@ -19,6 +19,7 @@ public final class Validations {
             Email.setError( "This email address is not valid" );
             return false;
         }
+        Email.setError(null);
         return true;
     }
 
@@ -35,11 +36,13 @@ public final class Validations {
                 return false;
             }
         }
+        Website.setError(null);
         return true;
     }
 
-    public static boolean validatePassword(TextInputEditText Password){
+    public static boolean validatePassword(TextInputEditText Password,Context context){
         String password = Password.getText().toString().trim();
+        int max= context.getResources().getInteger(R.integer.max_length_password);
         if (TextUtils.isEmpty(password)) {
             Password.setError("Enter password");
             return false;
@@ -49,6 +52,11 @@ public final class Validations {
             Password.setError( "Password too short, enter minimum 6 characters!");
             return false;
         }
+        if(password.length()>max) {
+            Password.setError("This password exceeds the max limit ");
+            return false;
+        }
+        Password.setError(null);
         return true;
     }
 
@@ -60,20 +68,28 @@ public final class Validations {
             Mobile.setError( "Mobile must be 11 numbers" );
             return false;
         }
+        Mobile.setError(null);
         return true;
     }
 
-    public static boolean validateUserName(TextInputEditText UserName){
+    public static boolean validateUserName(TextInputEditText UserName,Context context){
         String name = UserName.getText().toString().trim();
+        int max= context.getResources().getInteger(R.integer.max_length_username);
         if (TextUtils.isEmpty(name)) {
             UserName.setError("Username is required");
             return false;
         }
+        if(name.length()>max) {
+            UserName.setError("This username exceeds the max limit ");
+            return false;
+        }
+        UserName.setError(null);
         return true;
     }
 
-    public static boolean validateFullName(TextInputEditText FullName){
+    public static boolean validateFullName(TextInputEditText FullName , Context context){
         String name = FullName.getText().toString().trim();
+        int max= context.getResources().getInteger(R.integer.max_length_full_name);
         if (TextUtils.isEmpty(name)) {
             FullName.setError("Full Name is required");
             return false;
@@ -83,6 +99,11 @@ public final class Validations {
             FullName.setError( "Full name should be alphabetic" );
             return false;
         }
+        if(name.length()>max) {
+            FullName.setError("This name exceeds the max limit ");
+            return false;
+        }
+        FullName.setError(null);
         return true;
     }
 
@@ -111,6 +132,7 @@ public final class Validations {
             SpaceName.setError("This name exceeds the max limit");
             return false;
         }
+        SpaceName.setError(null);
         return true;
     }
 
@@ -125,6 +147,7 @@ public final class Validations {
             RoomName.setError("This name exceeds the max limit");
             return false;
         }
+        RoomName.setError(null);
         return true;
     }
 
@@ -137,6 +160,7 @@ public final class Validations {
                 return false;
             }
         }
+        media.setError(null);
         return true;
     }
 
@@ -152,6 +176,7 @@ public final class Validations {
             Capacity.setError("This is not valid capacity");
             return false;
         }
+        Capacity.setError(null);
         return true;
     }
 

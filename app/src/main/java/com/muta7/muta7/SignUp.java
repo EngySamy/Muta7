@@ -18,8 +18,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.muta7.muta7.CreateSpace.CreateSpaceActivity;
 import com.muta7.muta7.activities.NavigationActivity;
+import com.muta7.muta7.database.controllers.UserController;
 import com.muta7.muta7.generalResourses.Validations;
 
 /**
@@ -50,19 +53,22 @@ public class SignUp extends AppCompatActivity {
         FullName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Validations.validateFullName(FullName);
+                if (!hasFocus) {
+                    Validations.validateFullName(FullName,getApplicationContext());
+                }
             }
         });
 
         UserName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
-                Validations.validateUserName(UserName);
+                if (!hasFocus) {
+                    Validations.validateUserName(UserName,getApplicationContext());
+                }
             }
         });
 
-        Mobile.setOnFocusChangeListener(new View.OnFocusChangeListener()
-        {
+        Mobile.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus)
             {
@@ -88,7 +94,7 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    Validations.validatePassword(Password);
+                    Validations.validatePassword(Password,getApplicationContext());
                 }
             }
         });
@@ -97,8 +103,9 @@ public class SignUp extends AppCompatActivity {
         SignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if(!validation())
-                  //  return;
+                if(!validation())
+                    return;
+                AddUser();
 
                 progressBar.setVisibility(View.VISIBLE);
                 String password = Password.getText().toString().trim();
@@ -128,23 +135,6 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-        //called when auth changed (sign in or out)
-        /*authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                Toast.makeText(getApplicationContext(),"Auth Changed ",Toast.LENGTH_LONG).show();
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    // User is signed in
-                    // NOTE: this Activity should get onpen only when the user is not signed in, otherwise
-                    // the user will receive another verification email.
-                    sendVerificationEmail();
-                } else {
-                    // User is signed out
-                }
-            }
-        };*/
-
         SignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -152,51 +142,66 @@ public class SignUp extends AppCompatActivity {
             }
         });
 
+        Button ForgotPassword=(Button) findViewById(R.id.btn_reset_password_in_sign_up);
+        ForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(SignUp.this, com.muta7.muta7.ForgotPassword.class));
+            }
+        });
+
     }
 
     private boolean validation(){
-        return(Validations.validateEmail(Email,getApplicationContext())&&Validations.validatePassword(Password)
-                &&Validations.validateMobile(Mobile)&&Validations.validateUserName(UserName)
-                &&Validations.validateFullName(FullName));
+        return(Validations.validateEmail(Email,getApplicationContext())&&Validations.validatePassword(Password,getApplicationContext())
+                &&Validations.validateMobile(Mobile)&&Validations.validateUserName(UserName,getApplicationContext())
+                &&Validations.validateFullName(FullName,getApplicationContext()));
 
     }
 
     private void sendVerificationEmail()
     {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        // email sent
+                        Toast.makeText(getApplicationContext(),"Verification Email is sent. Please follow it.",Toast.LENGTH_LONG).show();
 
-        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            // email sent
-                            Toast.makeText(getApplicationContext(),"Verification Email is sent. Please follow it.",Toast.LENGTH_LONG).show();
-
-                            // after email is sent just logout the user and finish this activity
-                            FirebaseAuth.getInstance().signOut();
-                            startActivity(new Intent(SignUp.this, NavigationActivity.class));
-                            //finish();
-                        }
-                        else {
-                            // email not sent, so display message and restart the activity or do whatever you wish to do
-
-                            //restart this activity
-                            overridePendingTransition(0, 0);
-                            finish();
-                            overridePendingTransition(0, 0);
-                            startActivity(getIntent());
-
-                        }
+                        // after email is sent just logout the user and finish this activity
+                        FirebaseAuth.getInstance().signOut();
+                        finish();
+                        startActivity(new Intent(SignUp.this, NavigationActivity.class));
                     }
-                });
+                    else {
+                        // email not sent, so display message and restart the activity or do whatever you wish to do
+                        Toast.makeText(getApplicationContext(),"Something went wrong, please try again.",Toast.LENGTH_LONG).show();
+
+                        //restart this activity
+                        overridePendingTransition(0, 0);
+                        finish();
+                        overridePendingTransition(0, 0);
+                        startActivity(getIntent());
+
+                    }
+                }
+            });
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"Something went wrong, please try again.",Toast.LENGTH_LONG).show();
+        }
     }
-    /*
-    *
-    @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
-    }*/
+    private void AddUser(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if(user!=null) {
+            String id = user.getUid();
+            UserController.setFullName(id,FullName.getText().toString());
+            UserController.setUserName(id,UserName.getText().toString());
+            UserController.setMobileNumber(id,Mobile.getText().toString());
+
+        }
+    }
+
 }

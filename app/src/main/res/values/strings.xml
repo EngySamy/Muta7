@@ -114,6 +114,8 @@
     <string name="password">Password</string>
     <string name="btn_forgot_password">Forgot password?</string>
     <string name="btn_link_to_login">Sign in</string>
+    <string name="forgot_password_text">We just need your registered Email to send you password reset instructions</string>
+    <string name="reset_password">Reset Password</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
