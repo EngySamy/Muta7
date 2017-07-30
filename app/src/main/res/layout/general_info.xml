@@ -5,25 +5,23 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="32dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:text="@string/general_details"
             />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -41,10 +39,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -62,20 +58,16 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="32dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:text="@string/contact_details"
             />
 
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -94,10 +86,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -115,10 +105,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -136,10 +124,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -157,10 +143,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -178,10 +162,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="0dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -199,10 +181,8 @@
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingRight="16dp"
             android:paddingTop="16dp"
             android:paddingBottom="32dp"
-            android:paddingLeft="16dp"
             android:minHeight="72dp">
             <android.support.design.widget.TextInputEditText
                 android:layout_width="match_parent"
@@ -218,6 +198,13 @@
         </android.support.design.widget.TextInputLayout>
 
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:layout_gravity="right"
+            android:id="@+id/nextInGeneralInfo"
+            android:layout_marginBottom="32dp"/>
 
 
 

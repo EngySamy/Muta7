@@ -22,6 +22,8 @@
     <string name="room_type">Room Type</string>
     <string name="room_cap">Room Capacity</string>
     <string name="add_room">Add Room +</string>
+    <string name="next">Next</string>
+    <string name="back">Back</string>
 
     <string name="general_details">General Details</string>
     <string name="contact_details">Official Contact Details</string>

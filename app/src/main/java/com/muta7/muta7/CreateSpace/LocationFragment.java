@@ -170,6 +170,21 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             }
         });
 
+        Button next=(Button) rootView.findViewById(R.id.nextInLocation);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateSpaceActivity.viewPager.setCurrentItem(2,true);
+            }
+        });
+
+        Button back=(Button) rootView.findViewById(R.id.backInLocation);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateSpaceActivity.viewPager.setCurrentItem(0,true);
+            }
+        });
 
         return rootView;
     }
@@ -255,7 +270,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             nearbyPlaces.remove(toRemove);
         }
         else {
-            Toast.makeText(getContext(),"You should have at least one nearby place",Toast.LENGTH_LONG).show();
+            //Toast.makeText(getContext(),"You should have at least one nearby place",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -263,7 +278,9 @@ public class LocationFragment extends CreateSpaceFragmentBase {
         int len=nearbyPlaces.size();
         Vector<String> places=new Vector<>();
         for(int i=0;i<len;i++){
-            places.add(((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue)).getText().toString());
+            String str=((TextInputEditText)nearbyPlaces.elementAt(i).findViewById(R.id.SpaceNearPlaceValue)).getText().toString().trim();
+            if(!str.equals(""))
+                places.add(str);
         }
         return places;
     }
@@ -285,6 +302,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             return false;
         }
 
+        place.setError(null);
         return true;
 
     }
@@ -319,6 +337,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             city.setError(null);
             return true;
         }
+        city.setError(null);
         return false;
     }
 
@@ -328,6 +347,7 @@ public class LocationFragment extends CreateSpaceFragmentBase {
             district.setError(null);
             return true;
         }
+        district.setError(null);
         return false;
     }
 

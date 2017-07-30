@@ -9,6 +9,7 @@ import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -100,6 +101,14 @@ public class GeneralInfoFragment extends CreateSpaceFragmentBase {
         });
 
         //I didn't add the social media as they don't need thing except not to exceed the max limit , we check this finally
+
+        Button next=(Button) rootView.findViewById(R.id.nextInGeneralInfo);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateSpaceActivity.viewPager.setCurrentItem(1,true);
+            }
+        });
 
         return rootView;
     }

@@ -72,6 +72,22 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
             }
         });
 
+        Button next=(Button) rootView.findViewById(R.id.nextInRooms);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateSpaceActivity.viewPager.setCurrentItem(3,true);
+            }
+        });
+
+        Button back=(Button) rootView.findViewById(R.id.backInRooms);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CreateSpaceActivity.viewPager.setCurrentItem(1,true);
+            }
+        });
+
         return rootView;
     }
 
@@ -117,7 +133,7 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         roomHolderMap.put(id,holder);
         id++;
         if(removeButton){
-            rootView.findViewById(R.id.options).setBackgroundResource(R.drawable.down_arrow);
+            room.findViewById(R.id.options).setBackgroundResource(R.drawable.down_arrow);
             holder.popupMenu = new PopupMenu(getContext(), rootView.findViewById(R.id.options));
             holder.popupMenu.getMenu().add(Menu.NONE, 0, Menu.NONE, "Remove");
 
@@ -192,7 +208,7 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         Spinner roomType;
         TextInputEditText roomCapacity;
         MultiSelectionSpinner roomAment;
-        //TextView options;
+        TextView options;
         PopupMenu popupMenu;
     }
 }

@@ -24,8 +24,8 @@ import java.util.Vector;
  */
 
 public class CreateSpaceActivity extends AppCompatActivity implements SubmitListener {
-    CreateSpacePagerAdapter adapter;
-    ViewPager viewPager;
+    private CreateSpacePagerAdapter adapter;
+    static ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +62,7 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
             CreateSpaceFragmentBase frag;
             //Here loop for all the fragments to get data
             boolean test=true;
-            for(int i=2;i<adapter.getCount()-1;i++) {
+            for(int i=0;i<adapter.getCount()-1;i++) {
                 //frag=adapter.getRegisteredFragment(i);
                 frag=getFragment(i);
                 if(!frag.validate()) {
@@ -72,7 +72,7 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
 
                 }
                 Toast.makeText(getApplicationContext(),"validate "+i,Toast.LENGTH_LONG).show();
-                Log.e("vvvvvvvvvvvvv","vaaalidate "+i);
+                //Log.e("vvvvvvvvvvvvv","vaaalidate "+i);
             }
             //if(test)//add the new space
                 //general info
