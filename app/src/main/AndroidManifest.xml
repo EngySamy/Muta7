@@ -40,7 +40,7 @@
         </activity>
 
         <activity
-            android:name=".activities.NavigationActivity"
+            android:name=".navigation.controllers.activities.NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 

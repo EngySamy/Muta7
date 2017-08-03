@@ -1,4 +1,4 @@
-package com.muta7.muta7.activities;
+package com.muta7.muta7.navigation.controllers.activities;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.muta7.muta7.R;
-import com.muta7.muta7.fragments.HomeFragment;
+import com.muta7.muta7.navigation.controllers.fragments.HomeFragment;
 import com.muta7.muta7.support.CircleTransform;
 
 public class NavigationActivity extends AppCompatActivity

@@ -1,4 +1,4 @@
-package com.muta7.muta7.fragments;
+package com.muta7.muta7.navigation.controllers.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

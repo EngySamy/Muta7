@@ -15,7 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.muta7.muta7.activities.NavigationActivity;
+import com.muta7.muta7.navigation.controllers.activities.NavigationActivity;
 import com.muta7.muta7.generalResourses.Validations;
 
 /**
