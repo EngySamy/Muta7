@@ -1,4 +1,4 @@
-package com.muta7.muta7.support;
+package com.muta7.muta7.navigation.helpers;
 
 import android.content.Context;
 import android.graphics.Bitmap;

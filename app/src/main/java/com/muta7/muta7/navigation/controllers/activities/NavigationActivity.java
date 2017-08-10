@@ -19,7 +19,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.muta7.muta7.R;
 import com.muta7.muta7.navigation.controllers.fragments.HomeFragment;
-import com.muta7.muta7.support.CircleTransform;
+import com.muta7.muta7.navigation.helpers.CircleTransform;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
