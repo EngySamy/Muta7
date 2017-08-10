@@ -1,10 +1,10 @@
-package com.muta7.muta7.userProfile.helpers;
+package com.muta7.muta7.user_profile.helpers;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.muta7.muta7.userProfile.controllers.fragments.InfoFragment;
+import com.muta7.muta7.user_profile.controllers.fragments.InfoFragment;
 
 /**
  * Created by DeLL on 03/08/2017.

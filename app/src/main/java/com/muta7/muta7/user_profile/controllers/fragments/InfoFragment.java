@@ -1,4 +1,4 @@
-package com.muta7.muta7.userProfile.controllers.fragments;
+package com.muta7.muta7.user_profile.controllers.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

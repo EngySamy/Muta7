@@ -1,4 +1,4 @@
-package com.muta7.muta7.userProfile.controllers.activities;
+package com.muta7.muta7.user_profile.controllers.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.muta7.muta7.R;
-import com.muta7.muta7.userProfile.helpers.UserProfilePagerAdapter;
+import com.muta7.muta7.user_profile.helpers.UserProfilePagerAdapter;
 
 /**
  * Created by DeLL on 03/08/2017.
