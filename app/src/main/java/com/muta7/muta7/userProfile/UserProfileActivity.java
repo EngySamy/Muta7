@@ -1,4 +1,4 @@
-package com.muta7.muta7.UserProfile;
+package com.muta7.muta7.userProfile;
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -6,7 +6,6 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
-import com.muta7.muta7.CreateSpace.CreateSpacePagerAdapter;
 import com.muta7.muta7.R;
 
 /**

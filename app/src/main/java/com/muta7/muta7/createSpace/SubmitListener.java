@@ -1,4 +1,4 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
 /**
  * Created by DeLL on 11/07/2017.

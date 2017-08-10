@@ -1,4 +1,4 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
 import android.content.Context;
 import android.content.res.TypedArray;

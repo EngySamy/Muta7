@@ -1,4 +1,4 @@
-package com.muta7.muta7.UserProfile;
+package com.muta7.muta7.userProfile;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

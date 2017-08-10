@@ -1,4 +1,4 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
 import android.app.DialogFragment;
 
@@ -32,6 +32,8 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
     SubmitListener mCallback;
     Vector<Vector<TextView> > workingHours;
     LinearLayout daysLayout;
+    boolean customize=false;
+    int diffHours,daysCount;
 
 
     @Override
@@ -80,14 +82,15 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                 custom.setVisibility(View.INVISIBLE);
                 undo.setVisibility(View.VISIBLE);
                 try {
-                    int diff=timeDifference(start.getText().toString(),end.getText().toString());
+                    diffHours =timeDifference(start.getText().toString(),end.getText().toString());
                     Vector<String> workDays=new Vector<>();
                     for(int i=0;i<7;i++){
                         if(!weekDays[i].isChecked())
                             workDays.add(weekDaysStrings[i]);
                     }
 
-                    customization(diff,start.getText().toString(),daysLayout,workDays);
+                    customization(start.getText().toString(),daysLayout,workDays);
+                    customize=true;
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -100,6 +103,7 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                 undo.setVisibility(View.INVISIBLE);
                 custom.setVisibility(View.VISIBLE);
                 daysLayout.removeAllViews();
+                customize=false;
             }
         });
 
@@ -135,24 +139,24 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
         return (int) Math.ceil(hours);
     }
 
-    private void customization(int hours, String firstHour, LinearLayout parentLayout, Vector<String> workingDays) throws ParseException {
-        int workingDaysCount=workingDays.size();
+    private void customization( String firstHour, LinearLayout parentLayout, Vector<String> workingDays) throws ParseException {
+        daysCount=workingDays.size();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("HH:mm");
         Date date = simpleDateFormat.parse(firstHour);
         Calendar cal =Calendar.getInstance();
         cal.setTime(date);
 
-        workingHours=new Vector<>(workingDaysCount);
+        workingHours=new Vector<>(daysCount);
 
-        for(int i=0;i<workingDaysCount+1;i++){
-            Vector<TextView> day=new Vector<>(hours);
+        for(int i=0;i<diffHours+1;i++){
+            Vector<TextView> day=new Vector<>(diffHours);
             LinearLayout oneDayLayout=new LinearLayout(getContext());
             oneDayLayout.setOrientation(LinearLayout.HORIZONTAL);
             oneDayLayout.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
-            oneDayLayout.setWeightSum(hours);
+            oneDayLayout.setWeightSum(diffHours);
             parentLayout.addView(oneDayLayout);
             //add new button
-            for(int j=0;j<hours+1;j++){
+            for(int j=0;j<daysCount+1;j++){
                 final TextView hour=new TextView(getContext());
                 final float dimInPixels= getResources().getDimension(R.dimen.small_entry_in_dp);
                 final float mrgnInPixels= getResources().getDimension(R.dimen.margin);
@@ -160,15 +164,15 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                 params.setMargins((int)mrgnInPixels,(int)mrgnInPixels,(int)mrgnInPixels,(int)mrgnInPixels);
                 hour.setLayoutParams(params);
 
-
                 if(i==0){
                     if(j!=0){
-                        Integer temp=cal.get(Calendar.HOUR_OF_DAY);
-                        hour.setText(temp.toString());
-                        cal.add(Calendar.HOUR_OF_DAY,1);  //add one hour
+                        hour.setText(workingDays.elementAt(j-1));
                     }
                 } else if(j==0){
-                    hour.setText(workingDays.elementAt(i-1));
+
+                    Integer temp=cal.get(Calendar.HOUR_OF_DAY);
+                    hour.setText(temp.toString());
+                    cal.add(Calendar.HOUR_OF_DAY,1);  //add one hour
 
                 } else {
                     hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaSelect));
@@ -181,12 +185,12 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                             if (colorId == ContextCompat.getColor(getContext(), R.color.greyAlphaSelect))
                             {
                                 hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaUnselect));
-                                //Toast.makeText(getContext(),"Asassy",Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"Asassy",Toast.LENGTH_LONG).show();
                             }
 
                             else{
                                 hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaSelect));
-                                //Toast.makeText(getContext(),"msh Asassy.. colorId "+colorId,Toast.LENGTH_LONG).show();
+                                Toast.makeText(getContext(),"msh Asassy.. colorId "+colorId,Toast.LENGTH_LONG).show();
                             }
 
                         }
@@ -201,7 +205,20 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
     }
 
     private void getCustomizedHours(){
-        if(workingHours!=null){
+        if(workingHours!=null &&customize){
+
+            for(int i=0;i<diffHours+1;i++) {
+                for (int j = 0; j < daysCount + 1; j++) {
+                    ColorDrawable buttonColor = (ColorDrawable) workingHours.elementAt(i).elementAt(j).getBackground();
+                    int colorId = buttonColor.getColor();
+                    if (colorId == ContextCompat.getColor(getContext(), R.color.greyAlphaSelect))
+                    {
+
+                    }
+
+                }
+            }
+
 
         }
     }

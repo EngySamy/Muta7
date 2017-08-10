@@ -1,4 +1,4 @@
-package com.muta7.muta7;
+package com.muta7.muta7.signInAndUp;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.muta7.muta7.R;
 import com.muta7.muta7.navigation.controllers.activities.NavigationActivity;
 import com.muta7.muta7.database.controllers.UserController;
 import com.muta7.muta7.generalResourses.Validations;
@@ -140,7 +141,7 @@ public class SignUp extends AppCompatActivity {
         ForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignUp.this, com.muta7.muta7.ForgotPassword.class));
+                startActivity(new Intent(SignUp.this, com.muta7.muta7.signInAndUp.ForgotPassword.class));
             }
         });
 

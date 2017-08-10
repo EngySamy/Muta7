@@ -1,21 +1,14 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
-import android.nfc.tech.NfcA;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.support.design.widget.TextInputLayout;
-import android.text.TextUtils;
-import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import com.muta7.muta7.R;
 import com.muta7.muta7.database.models.GeneralInfo;
-import com.muta7.muta7.generalResourses.TextValidator;
 import com.muta7.muta7.generalResourses.Validations;
 
 /**

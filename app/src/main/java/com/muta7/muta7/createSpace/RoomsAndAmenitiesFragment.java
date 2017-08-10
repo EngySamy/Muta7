@@ -1,8 +1,8 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
 import android.content.res.TypedArray;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.PopupMenu;
 import android.view.LayoutInflater;
@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewManager;
+import android.view.animation.Animation;
+import android.view.animation.Transformation;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -64,7 +66,7 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
 
         AddRoom(base,rootView,false);
 
-        Button add=(Button) rootView.findViewById(R.id.addRoom);
+        FloatingActionButton add=(FloatingActionButton) rootView.findViewById(R.id.addRoom);
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,7 +93,7 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         return rootView;
     }
 
-    private void AddRoom(LinearLayout base,View rootView,boolean removeButton){
+    private void AddRoom(final LinearLayout base, View rootView, boolean removeButton){
         int max=getResources().getInteger(R.integer.max_num_rooms);
         if(roomHolderMap.size()>=max){
             Toast.makeText(getContext(),"You reached the maximum number of rooms",Toast.LENGTH_SHORT).show();
@@ -128,6 +130,8 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         });
 
         holder.roomCapacity=(TextInputEditText) room.findViewById(R.id.RoomCapacityValue);
+
+        addFloatingButton(room,base,id);
         //////////
         base.addView(room);
         roomHolderMap.put(id,holder);
@@ -153,6 +157,33 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
                 }
             });
         }
+    }
+
+    private void addFloatingButton(final View room, LinearLayout parent, final int id){
+        //FloatingActionButton fab=new FloatingActionButton(getContext());
+        //CoordinatorLayout.LayoutParams params=new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        //params.setAnchorId(xxxx);
+        //params.anchorGravity= Gravity.CENTER_HORIZONTAL | GravityCompat.START;
+        //fab.setLayoutParams(params);
+
+        final View fab=inflat.inflate(R.layout.floating_button,group,false);
+        Integer i=roomHolderMap.size()+1;
+        ((TextView)fab.findViewById(R.id.button_text)).setText(i.toString());
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean c=roomHolderMap.get(id).collapse;
+                if(c){
+                    expand(room);
+                }
+                else {
+                    collapse(room);
+                }
+                roomHolderMap.get(id).collapse=!c;
+            }
+        });
+        parent.addView(fab);
     }
 
 
@@ -210,5 +241,61 @@ public class RoomsAndAmenitiesFragment extends CreateSpaceFragmentBase {
         MultiSelectionSpinner roomAment;
         TextView options;
         PopupMenu popupMenu;
+        //Button expandCollapse;
+        boolean collapse=false;
+    }
+
+    public static void expand(final View v) {
+        v.measure(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        final int targetHeight = v.getMeasuredHeight();
+
+        // Older versions of android (pre API 21) cancel animations for views with a height of 0.
+        v.getLayoutParams().height = 1;
+        v.setVisibility(View.VISIBLE);
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                v.getLayoutParams().height = interpolatedTime == 1
+                        ? LinearLayout.LayoutParams.WRAP_CONTENT
+                        : (int)(targetHeight * interpolatedTime);
+                v.requestLayout();
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(targetHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
+    }
+
+    public static void collapse(final View v) {
+        final int initialHeight = v.getMeasuredHeight();
+
+        Animation a = new Animation()
+        {
+            @Override
+            protected void applyTransformation(float interpolatedTime, Transformation t) {
+                if(interpolatedTime == 1){
+                    v.setVisibility(View.GONE);
+                }else{
+                    v.getLayoutParams().height = initialHeight - (int)(initialHeight * interpolatedTime);
+                    v.requestLayout();
+                }
+            }
+
+            @Override
+            public boolean willChangeBounds() {
+                return true;
+            }
+        };
+
+        // 1dp/ms
+        a.setDuration((int)(initialHeight / v.getContext().getResources().getDisplayMetrics().density));
+        v.startAnimation(a);
     }
 }

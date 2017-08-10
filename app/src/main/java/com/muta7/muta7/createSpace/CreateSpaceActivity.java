@@ -1,4 +1,4 @@
-package com.muta7.muta7.CreateSpace;
+package com.muta7.muta7.createSpace;
 
 
 import android.content.Intent;
@@ -7,7 +7,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.widget.Toast;
 
 
@@ -16,8 +15,6 @@ import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
 import com.muta7.muta7.database.models.Location;
 import com.muta7.muta7.database.models.RoomsAndAmenities;
-
-import java.util.Vector;
 
 /**
  * Created by DeLL on 10/07/2017.
