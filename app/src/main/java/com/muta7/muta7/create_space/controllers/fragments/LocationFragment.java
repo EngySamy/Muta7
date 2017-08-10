@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.fragments;
 
 import android.content.Intent;
 import android.location.Address;
@@ -19,6 +19,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.controllers.activities.CreateSpaceActivity;
+import com.muta7.muta7.create_space.controllers.activities.GetAddressMap;
 import com.muta7.muta7.database.models.Location;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package com.muta7.muta7.generalResourses;
+package com.muta7.muta7.general_resources;
 
 /**
  * Created by DeLL on 23/07/2017.

@@ -1,4 +1,4 @@
-package com.muta7.muta7.generalResourses;
+package com.muta7.muta7.general_resources;
 
 /**
  * Copyright 2017 Gunaseelan A
@@ -8,15 +8,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnMultiChoiceClickListener;
-import android.graphics.Color;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 
 import com.muta7.muta7.R;
 

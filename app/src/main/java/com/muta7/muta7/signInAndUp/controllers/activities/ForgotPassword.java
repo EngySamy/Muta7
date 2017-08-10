@@ -1,4 +1,4 @@
-package com.muta7.muta7.signInAndUp;
+package com.muta7.muta7.signInAndUp.controllers.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,7 +13,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.muta7.muta7.R;
-import com.muta7.muta7.generalResourses.Validations;
+import com.muta7.muta7.general_resources.Validations;
 
 /**
  * Created by DeLL on 30/07/2017.

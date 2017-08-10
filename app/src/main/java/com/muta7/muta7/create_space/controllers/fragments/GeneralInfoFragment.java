@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.fragments;
 
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -8,8 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.controllers.activities.CreateSpaceActivity;
 import com.muta7.muta7.database.models.GeneralInfo;
-import com.muta7.muta7.generalResourses.Validations;
+import com.muta7.muta7.general_resources.Validations;
 
 /**
  * Created by DeLL on 10/07/2017.

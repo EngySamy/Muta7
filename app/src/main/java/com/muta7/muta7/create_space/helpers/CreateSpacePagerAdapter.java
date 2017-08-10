@@ -1,9 +1,15 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.helpers;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.SparseArray;
 import android.view.ViewGroup;
+
+import com.muta7.muta7.create_space.controllers.fragments.CreateSpaceFragmentBase;
+import com.muta7.muta7.create_space.controllers.fragments.GeneralInfoFragment;
+import com.muta7.muta7.create_space.controllers.fragments.LocationFragment;
+import com.muta7.muta7.create_space.controllers.fragments.OpeningHoursFragment;
+import com.muta7.muta7.create_space.controllers.fragments.RoomsAndAmenitiesFragment;
 
 /**
  * Created by DeLL on 10/07/2017.

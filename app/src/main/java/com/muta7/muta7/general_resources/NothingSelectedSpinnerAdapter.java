@@ -1,4 +1,4 @@
-package com.muta7.muta7.generalResourses;
+package com.muta7.muta7.general_resources;
 
 import android.content.Context;
 import android.database.DataSetObserver;

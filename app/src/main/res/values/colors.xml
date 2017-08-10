@@ -4,8 +4,8 @@
     <color name="colorPrimaryDark">#0E213d</color>
     <color name="colorAccent">#D81e5b</color>
     <color name="white">#fff</color>
-    <color name="greyAlphaSelect">#ffededed</color>
-    <color name="greyAlphaUnselect">#ffefeeee</color>
+    <color name="alphaSelect">#ffededed</color>
+    <color name="alphaUnselect">#ffefeeee</color>
 
     <color name="room_background">#ffefeeee</color>
 </resources>

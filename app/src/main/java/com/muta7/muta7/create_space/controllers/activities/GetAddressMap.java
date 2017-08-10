@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.activities;
 
 import android.content.Intent;
 import android.location.Address;

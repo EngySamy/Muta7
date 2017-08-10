@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.fragments;
 
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -21,12 +21,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.helpers.AmenityAdapter;
+import com.muta7.muta7.create_space.controllers.activities.CreateSpaceActivity;
 import com.muta7.muta7.database.models.Room;
 import com.muta7.muta7.database.models.RoomsAndAmenities;
-import com.muta7.muta7.generalResourses.ExpandableHeightGridView;
-import com.muta7.muta7.generalResourses.MultiSelectionSpinner;
-import com.muta7.muta7.generalResourses.NothingSelectedSpinnerAdapter;
-import com.muta7.muta7.generalResourses.Validations;
+import com.muta7.muta7.general_resources.ExpandableHeightGridView;
+import com.muta7.muta7.general_resources.MultiSelectionSpinner;
+import com.muta7.muta7.general_resources.NothingSelectedSpinnerAdapter;
+import com.muta7.muta7.general_resources.Validations;
 
 import java.util.HashMap;
 import java.util.List;

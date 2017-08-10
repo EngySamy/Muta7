@@ -29,7 +29,7 @@
     <View
         android:layout_width="1dp"
         android:layout_height="32dp"
-        android:background="@color/greyAlphaSelect"
+        android:background="@color/alphaSelect"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="0dp"
         android:paddingTop="0dp"/>

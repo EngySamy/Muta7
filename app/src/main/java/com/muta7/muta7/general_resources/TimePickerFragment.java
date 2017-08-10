@@ -1,4 +1,4 @@
-package com.muta7.muta7.generalResourses;
+package com.muta7.muta7.general_resources;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
@@ -7,7 +7,6 @@ import java.util.Calendar;
 import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TimePicker;
 
 /**

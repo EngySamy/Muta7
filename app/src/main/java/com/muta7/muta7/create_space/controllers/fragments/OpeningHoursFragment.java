@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.fragments;
 
 import android.app.DialogFragment;
 
@@ -16,7 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.muta7.muta7.R;
-import com.muta7.muta7.generalResourses.TimePickerFragment;
+import com.muta7.muta7.create_space.helpers.SubmitListener;
+import com.muta7.muta7.general_resources.TimePickerFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -175,21 +176,21 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                     cal.add(Calendar.HOUR_OF_DAY,1);  //add one hour
 
                 } else {
-                    hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaSelect));
+                    hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.alphaSelect));
                     //click listener for each cell
                     hour.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             ColorDrawable buttonColor = (ColorDrawable) hour.getBackground();
                             int colorId = buttonColor.getColor();
-                            if (colorId == ContextCompat.getColor(getContext(), R.color.greyAlphaSelect))
+                            if (colorId == ContextCompat.getColor(getContext(), R.color.alphaSelect))
                             {
-                                hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaUnselect));
+                                hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.alphaUnselect));
                                 Toast.makeText(getContext(),"Asassy",Toast.LENGTH_LONG).show();
                             }
 
                             else{
-                                hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.greyAlphaSelect));
+                                hour.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.alphaSelect));
                                 Toast.makeText(getContext(),"msh Asassy.. colorId "+colorId,Toast.LENGTH_LONG).show();
                             }
 
@@ -211,7 +212,7 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
                 for (int j = 0; j < daysCount + 1; j++) {
                     ColorDrawable buttonColor = (ColorDrawable) workingHours.elementAt(i).elementAt(j).getBackground();
                     int colorId = buttonColor.getColor();
-                    if (colorId == ContextCompat.getColor(getContext(), R.color.greyAlphaSelect))
+                    if (colorId == ContextCompat.getColor(getContext(), R.color.alphaSelect))
                     {
 
                     }

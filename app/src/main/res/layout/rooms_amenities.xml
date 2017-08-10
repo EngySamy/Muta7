@@ -15,12 +15,12 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:text="@string/general_amnt" />
-        <com.muta7.muta7.generalResourses.ExpandableHeightGridView
+        <com.muta7.muta7.general_resources.ExpandableHeightGridView
             android:layout_height="match_parent"
             android:numColumns="2"
             android:id="@+id/amnts_grid"
             android:layout_width="match_parent">
-        </com.muta7.muta7.generalResourses.ExpandableHeightGridView>
+        </com.muta7.muta7.general_resources.ExpandableHeightGridView>
 
         <TextView
             android:layout_width="match_parent"

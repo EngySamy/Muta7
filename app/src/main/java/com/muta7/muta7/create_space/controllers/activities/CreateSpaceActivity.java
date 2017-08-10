@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.activities;
 
 
 import android.content.Intent;
@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.controllers.fragments.CreateSpaceFragmentBase;
+import com.muta7.muta7.create_space.helpers.CreateSpacePagerAdapter;
+import com.muta7.muta7.create_space.helpers.SubmitListener;
 import com.muta7.muta7.database.controllers.CoworkingSpaceController;
 import com.muta7.muta7.database.models.GeneralInfo;
 import com.muta7.muta7.database.models.Location;
@@ -22,7 +25,7 @@ import com.muta7.muta7.database.models.RoomsAndAmenities;
 
 public class CreateSpaceActivity extends AppCompatActivity implements SubmitListener {
     private CreateSpacePagerAdapter adapter;
-    static ViewPager viewPager;
+    public static ViewPager viewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

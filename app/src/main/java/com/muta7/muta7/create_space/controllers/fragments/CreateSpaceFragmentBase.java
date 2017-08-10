@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.controllers.fragments;
 
 import android.support.v4.app.Fragment;
 

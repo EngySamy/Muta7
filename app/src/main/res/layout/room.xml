@@ -100,7 +100,7 @@
         android:paddingLeft="16dp"
         android:minHeight="72dp">
 
-        <com.muta7.muta7.generalResourses.MultiSelectionSpinner
+        <com.muta7.muta7.general_resources.MultiSelectionSpinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/RoomAmentValue"
@@ -111,7 +111,7 @@
             android:inputType="number"
             android:gravity="center_vertical"
             >
-        </com.muta7.muta7.generalResourses.MultiSelectionSpinner>
+        </com.muta7.muta7.general_resources.MultiSelectionSpinner>
     </android.support.design.widget.TextInputLayout>
 
 

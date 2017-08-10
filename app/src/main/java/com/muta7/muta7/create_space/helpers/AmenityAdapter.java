@@ -1,4 +1,4 @@
-package com.muta7.muta7.createSpace;
+package com.muta7.muta7.create_space.helpers;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.controllers.fragments.RoomsAndAmenitiesFragment;
 
 import java.util.Vector;
 
