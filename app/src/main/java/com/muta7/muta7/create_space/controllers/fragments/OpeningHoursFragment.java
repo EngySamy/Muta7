@@ -17,12 +17,16 @@ import android.widget.Toast;
 
 import com.muta7.muta7.R;
 import com.muta7.muta7.create_space.helpers.SubmitListener;
+import com.muta7.muta7.database.models.DAY;
+import com.muta7.muta7.database.models.DAY_HOURS;
 import com.muta7.muta7.general_resources.TimePickerFragment;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Vector;
 
 /**
@@ -205,15 +209,17 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
         }
     }
 
-    private void getCustomizedHours(){
+    private Map<DAY, Vector<DAY_HOURS>> getCustomizedHours(){
+        Map<DAY, Vector<DAY_HOURS>> mapDaysHour=new HashMap<>();
         if(workingHours!=null &&customize){
+            Vector<DAY_HOURS> newDay=new Vector<>();
 
             for(int i=0;i<diffHours+1;i++) {
                 for (int j = 0; j < daysCount + 1; j++) {
                     ColorDrawable buttonColor = (ColorDrawable) workingHours.elementAt(i).elementAt(j).getBackground();
                     int colorId = buttonColor.getColor();
-                    if (colorId == ContextCompat.getColor(getContext(), R.color.alphaSelect))
-                    {
+                    if (colorId == ContextCompat.getColor(getContext(), R.color.alphaSelect)) {
+                        //newDay.add()
 
                     }
 
@@ -222,6 +228,7 @@ public class OpeningHoursFragment extends CreateSpaceFragmentBase {
 
 
         }
+        return mapDaysHour;
     }
 
 

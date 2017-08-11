@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_height="wrap_content">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <android.support.v7.widget.Toolbar
             android:id="@+id/UserToolbar"
             android:layout_width="match_parent"
             android:minHeight="?attr/actionBarSize"
@@ -43,7 +43,7 @@
                         android:text="NAME"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/Name"
+                        android:id="@+id/fullName"
                         android:layout_marginTop="24dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp"
@@ -53,7 +53,7 @@
                         android:text="\@USERNAME"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/Username"
+                        android:id="@+id/username"
                         android:layout_marginTop="16dp"
                         android:layout_marginStart="16dp"
                         android:layout_marginLeft="16dp" />
@@ -63,7 +63,7 @@
 
 
             </LinearLayout>
-        </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/UserTabLayout"
@@ -77,7 +77,7 @@
         <android.support.v4.view.ViewPager
             android:id="@+id/UserPager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/white"/>
 
 

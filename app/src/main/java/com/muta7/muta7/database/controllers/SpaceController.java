@@ -196,7 +196,8 @@ public class SpaceController {
 
     public static void setWorkingHoursPerDay(DatabaseReference db, String id, Map<DAY_HOURS, Boolean> workingHours, String type,String day){
         //final boolean[][] done=new boolean[len][1];
-            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.OPENING_HOURS).child(GENERAL.WORK_HOURS).child(day).setValue(workingHours).addOnFailureListener(new OnFailureListener() {
+            db.child(GENERAL.SPACES).child(type).child(id).child(GENERAL.OPENING_HOURS).child(GENERAL.WORK_HOURS)
+                    .child(day).setValue(workingHours).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
                     //done[i]=false;
