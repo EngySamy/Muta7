@@ -18,7 +18,11 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.muta7.muta7.R;
+import com.muta7.muta7.navigation.controllers.fragments.FavouriteSpacesFragment;
+import com.muta7.muta7.navigation.controllers.fragments.FindSpaceFragment;
+import com.muta7.muta7.navigation.controllers.fragments.GroupsFragment;
 import com.muta7.muta7.navigation.controllers.fragments.HomeFragment;
+import com.muta7.muta7.navigation.controllers.fragments.NewsFeedFragment;
 import com.muta7.muta7.navigation.helpers.CircleTransform;
 
 public class NavigationActivity extends AppCompatActivity
@@ -37,6 +41,10 @@ public class NavigationActivity extends AppCompatActivity
     private static int navItemIndex = 0;
 
     private static final String TAG_HOME = "home";
+    private static final String TAG_FIND_SPACE = "find_space";
+    private static final String TAG_NEWS_FEED = "news_feed";
+    private static final String TAG_FAVOURITE_SPACES = "favourite_spaces";
+    private static final String TAG_GROUPS = "groups";
     public static String CURRENT_TAG = TAG_HOME;
 
     private String[] activityTitles;
@@ -121,8 +129,15 @@ public class NavigationActivity extends AppCompatActivity
     private Fragment getFragment() {
         switch (navItemIndex) {
             case 0:
-                HomeFragment homeFragment = new HomeFragment();
-                return homeFragment;
+                return new HomeFragment();
+            case 1:
+                return new FindSpaceFragment();
+            case 2:
+                return new NewsFeedFragment();
+            case 3:
+                return new FavouriteSpacesFragment();
+            case 4:
+                return new GroupsFragment();
             default:
                 return new HomeFragment();
         }
@@ -156,6 +171,22 @@ public class NavigationActivity extends AppCompatActivity
             case R.id.nav_home:
                 CURRENT_TAG = TAG_HOME;
                 navItemIndex = 0;
+                break;
+            case R.id.nav_find_space:
+                CURRENT_TAG = TAG_FIND_SPACE;
+                navItemIndex = 1;
+                break;
+            case R.id.nav_news_feed:
+                CURRENT_TAG = TAG_NEWS_FEED;
+                navItemIndex = 2;
+                break;
+            case R.id.nav_favourite_spaces:
+                CURRENT_TAG = TAG_FAVOURITE_SPACES;
+                navItemIndex = 3;
+                break;
+            case R.id.nav_groups:
+                CURRENT_TAG = TAG_GROUPS;
+                navItemIndex = 4;
                 break;
             default:
                 CURRENT_TAG = TAG_HOME;

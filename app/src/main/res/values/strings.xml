@@ -126,16 +126,17 @@
 
     <!-- Navigation Drawer menu labels -->
     <string name="nav_home">Home</string>
-    <string name="nav_about_us">About Us</string>
-    <string name="nav_privacy_policy">Privacy Policy</string>
-    <string name="action_logout">Logout</string>
+    <string name="nav_find_space">Find Space</string>
+    <string name="nav_favourite_spaces">Favourite Spaces</string>
+    <string name="nav_news_feed">News Feed</string>
+    <string name="nav_groups">Groups</string>
 
     <!-- Toolbar titles when navigation menu item is selected -->
     <string-array name="navigation_activity_titles">
         <item>Home</item>
-        <item>Photos</item>
-        <item>Movies</item>
-        <item>Notifications</item>
-        <item>Settings</item>
+        <item>Find Space</item>
+        <item>News Feed</item>
+        <item>Favourite Spaces</item>
+        <item>Groups</item>
     </string-array>
 </resources>
