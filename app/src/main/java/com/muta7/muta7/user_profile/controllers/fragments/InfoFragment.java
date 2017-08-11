@@ -17,7 +17,7 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        final View rootView = inflater.inflate(R.layout.general_info, container, false);
+        final View rootView = inflater.inflate(R.layout.info_fragment, container, false);
 
 
 

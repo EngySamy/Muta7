@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.helpers.CreateSpacePagerAdapter;
 import com.muta7.muta7.database.controllers.UserController;
 import com.muta7.muta7.user_profile.helpers.ReservationRecyclerAdapter;
 import com.muta7.muta7.user_profile.helpers.UserProfilePagerAdapter;
@@ -29,16 +30,10 @@ public class UserProfileActivity extends AppCompatActivity {
     TextView fullName,userName;
 
 
-    ////
-    /*RecyclerView reservationRecyclerView;
-    RecyclerView.Adapter mAdapter;
-    LinearLayoutManager  mLayoutManager;
-*/
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.user_profile);
-        //reservationList();
 
         // Find the view pager that will allow the user to swipe between fragments
         viewPager = (ViewPager) findViewById(R.id.UserPager);
@@ -63,23 +58,6 @@ public class UserProfileActivity extends AppCompatActivity {
 
     }
 
-    /*private void reservationList(){
-        reservationRecyclerView = (RecyclerView) findViewById(R.id.reservation_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        //reservationRecyclerView.setHasFixedSize(true);
-
-        // use a linear layout manager
-        mLayoutManager = new LinearLayoutManager(this);
-        mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        reservationRecyclerView.setLayoutManager(mLayoutManager);
-
-        String[] mDataset={"eeng","mmm","00000","5555","2222222","33333333","66666666","99999999"};
-        mAdapter = new ReservationRecyclerAdapter(mDataset);
-        reservationRecyclerView.setAdapter(mAdapter);
-        mAdapter.notifyDataSetChanged();
-    }*/
 
     private void initialize(){
         fullName =(TextView) findViewById(R.id.fullName);
