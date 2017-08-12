@@ -29,9 +29,9 @@ public final class CoworkingSpaceController extends SpaceController {
     public static void addNewSpace(String spaceID, GeneralInfo gi, Location l, RoomsAndAmenities roomsAndAmenities){//){
         CoworkingSpace space=new CoworkingSpace(gi,l,roomsAndAmenities);
         //To add the general info
-        SpaceController.setGeneralInfo(mDatabase,spaceID,space.generalInfo,type);
+        SpaceController.setGeneralInfo(mDatabase,spaceID,space.getGeneralInfo(),type);
         //To add Location
-        SpaceController.setLocation(mDatabase,spaceID,space.location,type);
+        SpaceController.setLocation(mDatabase,spaceID,space.getLocation(),type);
         //general amenities
         setAmenities(mDatabase,spaceID,roomsAndAmenities.generalAmenities);
         //Rooms

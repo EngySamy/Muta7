@@ -5,7 +5,7 @@ package com.muta7.muta7.database.models;
  */
 
 public class GeneralInfo {
-    //public String spaceID;
+    private String spaceID;
     private String spaceName;
     private String description;
     private String mobile;  //[]
@@ -29,6 +29,14 @@ public class GeneralInfo {
         this.twitter=twitter;
         this.instagram=instagram;
         this.youtube=youtube;
+    }
+
+    public String getSpaceID() {
+        return spaceID;
+    }
+
+    public void setSpaceID(String spaceID) {
+        this.spaceID = spaceID;
     }
 
     public String getSpaceName() {

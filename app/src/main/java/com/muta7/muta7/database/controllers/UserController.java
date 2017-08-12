@@ -161,7 +161,7 @@ public class UserController {
         final boolean[] succeeded = {true};
         ArrayList<String> spacesIDs = new ArrayList<>();
         for(space temp : spaces){
-            spacesIDs.add(temp.getSpaceID());
+            spacesIDs.add(temp.getGeneralInfo().getSpaceID());
         }
         userReference.child(userID).child("spaces").setValue(spacesIDs).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -192,7 +192,7 @@ public class UserController {
         final boolean[] succeeded = {true};
         ArrayList<String> favouriteSpacesIDs = new ArrayList<>();
         for(space temp : favouriteSpaces){
-            favouriteSpacesIDs.add(temp.getSpaceID());
+            favouriteSpacesIDs.add(temp.getGeneralInfo().getSpaceID());
         }
         userReference.child(userID).child("favourite_spaces").setValue(favouriteSpacesIDs).addOnFailureListener(new OnFailureListener() {
             @Override
