@@ -1,4 +1,4 @@
-package com.muta7.muta7.signInAndUp.controllers.activities;
+package com.muta7.muta7.sign.controllers.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

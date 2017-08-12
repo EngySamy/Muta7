@@ -27,18 +27,17 @@
         </activity>
 
         <activity
-            android:name=".signInAndUp.controllers.activities.SignIn">
+            android:name=".sign.controllers.activities.SignIn">
         </activity>
 
         <activity
-            android:name=".signInAndUp.controllers.activities.ForgotPassword">
+            android:name=".sign.controllers.activities.ForgotPassword">
         </activity>
 
         <activity
             android:name=".navigation.controllers.activities.NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

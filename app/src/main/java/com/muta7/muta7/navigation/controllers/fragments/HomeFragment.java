@@ -1,6 +1,7 @@
 package com.muta7.muta7.navigation.controllers.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.arlib.floatingsearchview.suggestions.model.SearchSuggestion;
 import com.muta7.muta7.R;
+import com.muta7.muta7.create_space.controllers.activities.CreateSpaceActivity;
 import com.muta7.muta7.database.models.GeneralInfo;
 import com.muta7.muta7.database.models.Location;
 import com.muta7.muta7.database.models.Space;
@@ -116,6 +118,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onFocusCleared() {
 
+            }
+        });
+
+        createSpaceButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), CreateSpaceActivity.class);
+                startActivity(intent);
             }
         });
     }
