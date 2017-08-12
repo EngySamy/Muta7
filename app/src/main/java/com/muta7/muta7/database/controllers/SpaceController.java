@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by DeLL on 23/04/2017.
  */
 
-//Put in this class the generic categories to use in any space
+//Put in this class the generic categories to use in any Space
 public class SpaceController {
 
     public static boolean[] setGeneralInfo(DatabaseReference db,String id, GeneralInfo gen,String type){

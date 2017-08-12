@@ -74,7 +74,7 @@ public class CreateSpaceActivity extends AppCompatActivity implements SubmitList
                 Toast.makeText(getApplicationContext(),"validate "+i,Toast.LENGTH_LONG).show();
                 //Log.e("vvvvvvvvvvvvv","vaaalidate "+i);
             }
-            //if(test)//add the new space
+            //if(test)//add the new Space
                 //general info
             CoworkingSpaceController.addNewSpace("0565",(GeneralInfo)getFragment(0).getData(),
                     (Location)getFragment(1).getData(),

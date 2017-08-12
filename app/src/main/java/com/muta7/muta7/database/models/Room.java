@@ -7,7 +7,7 @@ import java.util.List;
  */
 
 public class Room {
-    //public String roomName;     //unique in the same space //i removed it from the object as it will be the id of the room to be able to identify and get it
+    //public String roomName;     //unique in the same Space //i removed it from the object as it will be the id of the room to be able to identify and get it
     public int capacity;
     public double area;
     public String  type;

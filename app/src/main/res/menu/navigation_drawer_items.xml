@@ -6,16 +6,27 @@
             android:id="@+id/nav_home"
             android:icon="@mipmap/ic_home_black_24dp"
             android:title="@string/nav_home" />
+        <item
+            android:id="@+id/nav_find_space"
+            android:icon="@mipmap/ic_filter_list_black_24dp"
+            android:title="@string/nav_find_space" />
+        <item
+            android:id="@+id/nav_news_feed"
+            android:icon="@mipmap/ic_autorenew_black_24dp"
+            android:title="@string/nav_news_feed" />
+        <item
+            android:id="@+id/nav_favourite_spaces"
+            android:icon="@mipmap/ic_favorite_black_24dp"
+            android:title="@string/nav_favourite_spaces" />
+
+        <item
+            android:id="@+id/nav_groups"
+            android:icon="@mipmap/ic_group_black_24dp"
+            android:title="@string/nav_groups" />
+
     </group>
 
-    <item android:title="Other">
-        <menu>
-            <item
-                android:id="@+id/nav_about_us"
-                android:title="@string/nav_about_us" />
-            <item
-                android:id="@+id/nav_privacy_policy"
-                android:title="@string/nav_privacy_policy" />
-        </menu>
+    <item android:title="Others">
+        <menu></menu>
     </item>
 </menu>
