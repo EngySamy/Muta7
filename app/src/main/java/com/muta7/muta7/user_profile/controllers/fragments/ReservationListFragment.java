@@ -1,5 +1,6 @@
 package com.muta7.muta7.user_profile.controllers.fragments;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,17 +10,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.user_profile.helpers.ReservationFragmentListener;
 import com.muta7.muta7.user_profile.helpers.ReservationRecyclerAdapter;
 
 /**
  * Created by DeLL on 10/08/2017.
  */
 
-public class ReservationFragment extends Fragment {
+public class ReservationListFragment extends Fragment {
     RecyclerView reservationRecyclerView;
     RecyclerView.Adapter mAdapter;
     LinearLayoutManager  mLayoutManager;
     View rootView;
+    ReservationFragmentListener reservationListFragmentListener;
+
+    public static ReservationListFragment newInstance(ReservationFragmentListener r) {
+        ReservationListFragment f = new ReservationListFragment();
+        f.reservationListFragmentListener=r;
+        return f;
+    }
 
 
     @Override
@@ -28,6 +37,13 @@ public class ReservationFragment extends Fragment {
         rootView = inflater.inflate(R.layout.reservation_list, container, false);
 
         reservationList();
+        FloatingActionButton goToCalender=(FloatingActionButton) rootView.findViewById(R.id.goToCalender);
+        goToCalender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reservationListFragmentListener.onSwitchToNextFragment();
+            }
+        });
         return rootView;
     }
 

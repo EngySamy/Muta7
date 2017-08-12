@@ -25,7 +25,7 @@ import com.muta7.muta7.user_profile.helpers.UserProfilePagerAdapter;
 
 public class UserProfileActivity extends AppCompatActivity {
 
-    private UserProfilePagerAdapter adapter;
+    public static UserProfilePagerAdapter adapter;
     static ViewPager viewPager;
     TextView fullName,userName;
 
