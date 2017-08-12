@@ -6,15 +6,15 @@ package com.muta7.muta7.database.models;
 
 public class GeneralInfo {
     //public String spaceID;
-    public String spaceName;
-    public String description;
-    public String mobile;  //[]
-    public String email;
-    public String website;
-    public String facebook;
-    public String twitter;
-    public String instagram;
-    public String youtube;
+    private String spaceName;
+    private String description;
+    private String mobile;  //[]
+    private String email;
+    private String website;
+    private String facebook;
+    private String twitter;
+    private String instagram;
+    private String youtube;
     //public User[] admins;
 
     public GeneralInfo(String spaceName, String description, String mobile, String email, String website,

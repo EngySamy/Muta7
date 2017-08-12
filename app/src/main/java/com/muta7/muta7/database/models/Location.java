@@ -7,12 +7,12 @@ import java.util.Vector;
  */
 
 public class Location {
-    public String city;
-    public String district;
-    public double lat;
-    public double lng;
-    public String address;
-    public Vector<String> nearbyPlaces;
+    private String city;
+    private String district;
+    private double lat;
+    private double lng;
+    private String address;
+    private Vector<String> nearbyPlaces;
 
     public Location(String city, String district, double lat, double lng, String address, Vector<String> nearbyPlaces){
         this.city=city;
