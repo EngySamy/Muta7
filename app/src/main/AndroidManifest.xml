@@ -14,12 +14,12 @@
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
 
-        <!--<activity
-            android:name=".CreateSpace.CreateSpaceActivity"
+        <activity
+            android:name=".create_space.controllers.activities.CreateSpaceActivity"
             android:label="@string/create_space_title"
             android:theme="@style/AppTheme.NoActionBar" >
 
-        </activity>-->
+        </activity>
       
         <activity        
             android:name=".create_space.controllers.activities.GetAddressMap"
@@ -45,10 +45,6 @@
             </intent-filter>
         </activity>
 
-        <!--<activity
-            android:name=".UserProfileActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>-->
 
 
         <meta-data
