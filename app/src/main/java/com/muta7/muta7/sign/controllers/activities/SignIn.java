@@ -1,4 +1,4 @@
-package com.muta7.muta7.signInAndUp.controllers.activities;
+package com.muta7.muta7.sign.controllers.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -95,7 +95,7 @@ public class SignIn extends AppCompatActivity {
         ForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignIn.this, com.muta7.muta7.signInAndUp.controllers.activities.ForgotPassword.class));
+                startActivity(new Intent(SignIn.this, com.muta7.muta7.sign.controllers.activities.ForgotPassword.class));
             }
         });
 

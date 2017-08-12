@@ -1,5 +1,6 @@
 package com.muta7.muta7.navigation.controllers.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.NavigationView;
@@ -17,13 +18,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.auth.FirebaseAuth;
 import com.muta7.muta7.R;
+import com.muta7.muta7.database.controllers.UserController;
 import com.muta7.muta7.navigation.controllers.fragments.FavouriteSpacesFragment;
 import com.muta7.muta7.navigation.controllers.fragments.FindSpaceFragment;
 import com.muta7.muta7.navigation.controllers.fragments.GroupsFragment;
 import com.muta7.muta7.navigation.controllers.fragments.HomeFragment;
 import com.muta7.muta7.navigation.controllers.fragments.NewsFeedFragment;
 import com.muta7.muta7.navigation.helpers.CircleTransform;
+import com.muta7.muta7.user_profile.controllers.activities.UserProfileActivity;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,6 +38,7 @@ public class NavigationActivity extends AppCompatActivity
     private ImageView imgNavHeaderBg, imgProfile;
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
+    private FirebaseAuth firebaseAuth;
 
     private final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private final String urlProfileImg = "https://firebasestorage.googleapis.com/v0/b/muta7-f44d2.appspot.com/o/IMG_1373.JPG?alt=media&token=8babffbb-a585-45de-8f6e-c6f5e28b3d19";
@@ -58,6 +63,7 @@ public class NavigationActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         initializeViewVars();
+        firebaseAuth = FirebaseAuth.getInstance();
         handler = new Handler();
         activityTitles = getResources().getStringArray(R.array.navigation_activity_titles);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -85,8 +91,23 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     private void loadNavHeader() {
-        txtName.setText("Kareem Waleed");
-        txtWebsite.setText("Android Developer");
+        if(firebaseAuth.getCurrentUser() != null){
+            String userID = firebaseAuth.getCurrentUser().getUid();
+            String userFullName = UserController.getFullName(userID);
+            String userEmail = UserController.getEmail(userID);
+            txtName.setText(userFullName);
+            txtWebsite.setText(userEmail);
+            navHeader.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(NavigationActivity.this, UserProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }else{
+            txtName.setText("Your Full Name");
+            txtWebsite.setText("example@domain.com");
+        }
 
         Glide.with(this).load(urlNavHeaderBg)
                 .crossFade()
