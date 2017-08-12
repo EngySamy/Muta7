@@ -15,6 +15,6 @@
     <dimen name="profile_height">75dp</dimen>
 
     <!-- search bar dimens -->
-    <dimen name="search_bar_side_margin">16dp</dimen>
+    <dimen name="search_bar_side_margin">8dp</dimen>
     <dimen name="search_bar_top_margin">80dp</dimen>
 </resources>

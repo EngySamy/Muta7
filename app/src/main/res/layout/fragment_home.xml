@@ -1,38 +1,40 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_fragment_main_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.muta7.muta7.navigation.controllers.fragments.HomeFragment">
 
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        android:gravity="center">
+        app:layout_constraintRight_toLeftOf="parent">
 
 
         <Button
+            android:id="@+id/b_find_space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/find_space_button_text"
             android:layout_marginRight="16dp"
+            android:text="@string/find_space_button_text"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
         <Button
+            android:id="@+id/b_create_space"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_space_button_text"
             android:layout_marginLeft="16dp"
+            android:text="@string/create_space_button_text"
             android:textAllCaps="false"
-            android:textSize="18sp"
-            android:textColor="@color/colorPrimary"/>
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -42,11 +44,11 @@
         android:layout_height="match_parent"
         app:floatingSearch_leftActionMode="noLeftAction"
         app:floatingSearch_menu="@menu/search_bar_options_menu"
+        app:floatingSearch_menuItemIconColor="@color/colorPrimary"
         app:floatingSearch_searchBarMarginLeft="@dimen/search_bar_side_margin"
         app:floatingSearch_searchBarMarginRight="@dimen/search_bar_side_margin"
         app:floatingSearch_searchBarMarginTop="@dimen/search_bar_top_margin"
         app:floatingSearch_searchHint="@string/search_hint"
-        app:floatingSearch_suggestionsListAnimDuration="250"
-        app:floatingSearch_menuItemIconColor="@color/colorPrimary"/>
+        app:floatingSearch_suggestionsListAnimDuration="250" />
 
 </android.support.constraint.ConstraintLayout>
