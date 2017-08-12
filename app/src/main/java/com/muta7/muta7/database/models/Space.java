@@ -4,15 +4,15 @@ package com.muta7.muta7.database.models;
  * Created by DeLL on 22/04/2017.
  */
 
-public class space {
+public class Space {
     protected GeneralInfo generalInfo;
     protected Location location;
 
-    public space(){
+    public Space(){
 
     }
 
-    public space(GeneralInfo generalInfo, Location location){
+    public Space(GeneralInfo generalInfo, Location location){
         this.generalInfo = generalInfo;
         this.location = location;
     }

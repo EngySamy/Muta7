@@ -16,8 +16,8 @@ public class User {
     private String email;
     private String password;
     private Bitmap photo;
-    private ArrayList<space> spaces;
-    private ArrayList<space> favouriteSpaces;
+    private ArrayList<Space> spaces;
+    private ArrayList<Space> favouriteSpaces;
     private ArrayList<User> friends;
     //TODO: add ArrayList<Group> groups;
     //TODO: add ArrayList<Reservation> reservations;
@@ -78,34 +78,34 @@ public class User {
         this.photo = photo;
     }
 
-    public ArrayList<space> getSpaces() {
+    public ArrayList<Space> getSpaces() {
         return spaces;
     }
 
-    public void setSpaces(ArrayList<space> spaces) {
+    public void setSpaces(ArrayList<Space> spaces) {
         this.spaces = spaces;
     }
 
-    public void addSpace(space space){
+    public void addSpace(Space space){
         spaces.add(space);
     }
 
-    //TODO: add removeSpace(space space)
+    //TODO: add removeSpace(Space Space)
 
 
-    public ArrayList<space> getFavouriteSpaces() {
+    public ArrayList<Space> getFavouriteSpaces() {
         return favouriteSpaces;
     }
 
-    public void setFavouriteSpaces(ArrayList<space> favouriteSpaces) {
+    public void setFavouriteSpaces(ArrayList<Space> favouriteSpaces) {
         this.favouriteSpaces = favouriteSpaces;
     }
 
-    public void addFavouriteSpace(space space){
+    public void addFavouriteSpace(Space space){
         favouriteSpaces.add(space);
     }
 
-    //TODO: add removeFavouriteSpace(space space)
+    //TODO: add removeFavouriteSpace(Space Space)
 
     public ArrayList<User> getFriends() {
         return friends;

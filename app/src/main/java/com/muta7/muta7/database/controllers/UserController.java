@@ -8,8 +8,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.muta7.muta7.database.models.Space;
 import com.muta7.muta7.database.models.User;
-import com.muta7.muta7.database.models.space;
 
 import java.util.ArrayList;
 
@@ -157,10 +157,10 @@ public class UserController {
         return password[0];
     }
 
-    public static boolean setSpaces(String userID, ArrayList<space> spaces){
+    public static boolean setSpaces(String userID, ArrayList<Space> spaces){
         final boolean[] succeeded = {true};
         ArrayList<String> spacesIDs = new ArrayList<>();
-        for(space temp : spaces){
+        for(Space temp : spaces){
             spacesIDs.add(temp.getGeneralInfo().getSpaceID());
         }
         userReference.child(userID).child("spaces").setValue(spacesIDs).addOnFailureListener(new OnFailureListener() {
@@ -188,10 +188,10 @@ public class UserController {
         return spacesID.get(0);
     }
 
-    public static boolean setFavouriteSpaces(String userID, ArrayList<space> favouriteSpaces){
+    public static boolean setFavouriteSpaces(String userID, ArrayList<Space> favouriteSpaces){
         final boolean[] succeeded = {true};
         ArrayList<String> favouriteSpacesIDs = new ArrayList<>();
-        for(space temp : favouriteSpaces){
+        for(Space temp : favouriteSpaces){
             favouriteSpacesIDs.add(temp.getGeneralInfo().getSpaceID());
         }
         userReference.child(userID).child("favourite_spaces").setValue(favouriteSpacesIDs).addOnFailureListener(new OnFailureListener() {

@@ -4,7 +4,7 @@ package com.muta7.muta7.database.models;
  * Created by DeLL on 22/04/2017.
  */
 
-public class CoworkingSpace extends space{
+public class CoworkingSpace extends Space {
     public static final String SPACE_TYPE = "CoworkingSpace";
 
     private RoomsAndAmenities roomsAndAmenities;
