@@ -1,7 +1,52 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.muta7.muta7.navigation.controllers.fragments.HomeFragment">
 
-</FrameLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:gravity="center">
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/find_space_button_text"
+            android:layout_marginRight="16dp"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/create_space_button_text"
+            android:layout_marginLeft="16dp"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+    <com.arlib.floatingsearchview.FloatingSearchView
+        android:id="@+id/fsv_search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:floatingSearch_leftActionMode="noLeftAction"
+        app:floatingSearch_menu="@menu/search_bar_options_menu"
+        app:floatingSearch_searchBarMarginLeft="@dimen/search_bar_side_margin"
+        app:floatingSearch_searchBarMarginRight="@dimen/search_bar_side_margin"
+        app:floatingSearch_searchBarMarginTop="@dimen/search_bar_top_margin"
+        app:floatingSearch_searchHint="@string/search_hint"
+        app:floatingSearch_suggestionsListAnimDuration="250"
+        app:floatingSearch_menuItemIconColor="@color/colorPrimary"/>
+
+</android.support.constraint.ConstraintLayout>
