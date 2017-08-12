@@ -5,27 +5,31 @@ package com.muta7.muta7.database.models;
  */
 
 public class space {
-    //General Information
-    public String space_id;
-    public String space_name;
-    public String description;
-    public String[] mobile;
-    public String email;
-    public String website;
-    public String facebook;
-    public String twitter;
-    public String instagram;
-    public String youtube;
-    //Location
-    public String city;
-    public String district;
-    public long lat;
-    public long lng;
-    public String address;
-    public String[] nearbyPlaces;
+    protected GeneralInfo generalInfo;
+    protected Location location;
 
-    public String getSpaceID(){
-        return space_id;
+    public space(){
+
     }
 
+    public space(GeneralInfo generalInfo, Location location){
+        this.generalInfo = generalInfo;
+        this.location = location;
+    }
+
+    public GeneralInfo getGeneralInfo() {
+        return generalInfo;
+    }
+
+    public void setGeneralInfo(GeneralInfo generalInfo) {
+        this.generalInfo = generalInfo;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }
