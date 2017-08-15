@@ -11,9 +11,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,7 +35,7 @@ import com.muta7.muta7.navigation.helpers.CircleTransform;
 import com.muta7.muta7.user_profile.controllers.activities.UserProfileActivity;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -39,6 +44,8 @@ public class NavigationActivity extends AppCompatActivity
     private TextView txtName, txtWebsite;
     private Toolbar toolbar;
     private FirebaseAuth firebaseAuth;
+    private ViewStub viewStub;
+    private LinearLayout filterLinearLayout;
 
     private final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private final String urlProfileImg = "https://firebasestorage.googleapis.com/v0/b/muta7-f44d2.appspot.com/o/IMG_1373.JPG?alt=media&token=8babffbb-a585-45de-8f6e-c6f5e28b3d19";
@@ -91,7 +98,7 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     private void loadNavHeader() {
-        if(firebaseAuth.getCurrentUser() != null){
+        if (firebaseAuth.getCurrentUser() != null) {
             String userID = firebaseAuth.getCurrentUser().getUid();
             String userFullName = UserController.getFullName(userID);
             String userEmail = UserController.getEmail(userID);
@@ -104,7 +111,7 @@ public class NavigationActivity extends AppCompatActivity
                     startActivity(intent);
                 }
             });
-        }else{
+        } else {
             txtName.setText("Your Full Name");
             txtWebsite.setText("example@domain.com");
         }
@@ -216,5 +223,48 @@ public class NavigationActivity extends AppCompatActivity
         loadFragment();
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigation_activity_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_filter:
+                drawer.openDrawer(filterLinearLayout);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if(CURRENT_TAG == TAG_FIND_SPACE)
+            menu.getItem(0).setVisible(true);
+        else
+            menu.getItem(0).setVisible(false);
+        return true;
+    }
+
+    @Override
+    public void createFilterDrawer() {
+        invalidateOptionsMenu();
+        viewStub = (ViewStub) getLayoutInflater().inflate(R.layout.stub_layout, null);
+        drawer.addView(viewStub);
+        filterLinearLayout = (LinearLayout) viewStub.inflate();
+        float scale = getApplicationContext().getResources().getDisplayMetrics().density;
+        DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) (300 * scale + 0.5), ViewGroup.LayoutParams.MATCH_PARENT);
+        layoutParams.gravity = Gravity.END;
+        filterLinearLayout.setLayoutParams(layoutParams);
+    }
+
+    @Override
+    public void removeFilterDrawer() {
+        invalidateOptionsMenu();
+        drawer.removeView(filterLinearLayout);
     }
 }
