@@ -1,61 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.muta7.muta7" >
+    package="com.muta7.muta7">
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name=".create_space.controllers.activities.CreateSpaceActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
-        <!--<activity
+        <!--
+        <activity
             android:name=".CreateSpace.CreateSpaceActivity"
             android:label="@string/create_space_title"
             android:theme="@style/AppTheme.NoActionBar" >
 
-        </activity>-->
-      
-        <activity        
+        </activity>
+        -->
+
+        <activity
             android:name=".create_space.controllers.activities.GetAddressMap"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity
-            android:name=".sign.controllers.activities.SignIn">
-        </activity>
-
-        <activity
-            android:name=".sign.controllers.activities.ForgotPassword">
-        </activity>
-
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".sign.controllers.activities.SignIn"></activity>
+        <activity android:name=".sign.controllers.activities.ForgotPassword"></activity>
         <activity
             android:name=".navigation.controllers.activities.NavigationActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
-        <!--<activity
+        <!--
+        <activity
             android:name=".UserProfileActivity"
             android:theme="@style/AppTheme.NoActionBar">
-        </activity>-->
-
+        </activity>
+        -->
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCTh2IjNTGjEcyF38S-mHz9B6v7hhtBJXQ"/>
+            android:value="AIzaSyCTh2IjNTGjEcyF38S-mHz9B6v7hhtBJXQ" />
 
         <uses-permission android:name="android.permission.INTERNET" />
 
+        <activity android:name=".splash.activities.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
