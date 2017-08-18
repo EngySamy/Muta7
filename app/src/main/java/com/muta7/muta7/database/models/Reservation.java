@@ -23,4 +23,24 @@ public class Reservation {
         this.slots=slots;
         this.day=day;
     }
+    public String getSpaceName(){
+        //get string space name from database
+        return spaceId;
+    }
+    public String getGroupName(){
+        //get group name from database
+        return "Group";
+    }
+
+    public String getSpaceId() {
+        return spaceId;
+    }
+    public Date getDay(){
+        return day;
+    }
+    public String getFirstHour(){
+        if(slots!=null &&slots.firstElement()!=null)
+            return slots.firstElement().name();
+        return null;
+    }
 }

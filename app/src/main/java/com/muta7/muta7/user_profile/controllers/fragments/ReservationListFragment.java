@@ -1,7 +1,7 @@
 package com.muta7.muta7.user_profile.controllers.fragments;
 
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.muta7.muta7.R;
+import com.muta7.muta7.database.models.DAY_HOURS;
+import com.muta7.muta7.database.models.Reservation;
 import com.muta7.muta7.user_profile.helpers.ReservationFragmentListener;
 import com.muta7.muta7.user_profile.helpers.ReservationRecyclerAdapter;
+
+import java.util.Date;
+import java.util.Vector;
 
 /**
  * Created by DeLL on 10/08/2017.
@@ -59,9 +64,20 @@ public class ReservationListFragment extends Fragment {
         mLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         reservationRecyclerView.setLayoutManager(mLayoutManager);
 
-        String[] mDataset={"eeng","mmm","00000","5555","2222222","33333333","66666666","99999999"};
+        Vector<Reservation>mDataset=getDataForTest() ;//={"eeng","mmm","00000","5555","2222222","33333333","66666666","99999999"};
+
         mAdapter = new ReservationRecyclerAdapter(mDataset);
         reservationRecyclerView.setAdapter(mAdapter);
         mAdapter.notifyDataSetChanged();
+    }
+    private Vector<Reservation> getDataForTest(){
+        Vector<Reservation>mDataset=new Vector<>();
+        for(Integer i=0;i<10;i++){
+            Vector<DAY_HOURS> t=new Vector<>(2);
+            t.add(DAY_HOURS.AM10_00);
+            Reservation rs=new Reservation(i.toString(),"00","00","00", t,new Date((long)999999999));
+            mDataset.add(rs);
+        }
+        return mDataset;
     }
 }

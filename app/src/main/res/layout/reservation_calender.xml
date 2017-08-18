@@ -11,9 +11,8 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"/>
-    <CalendarView
-        android:id="@+id/myReservationsCalendarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <include
+        android:id="@+id/subCategory"
+        layout="@layout/calender_view" />
 
 </RelativeLayout>

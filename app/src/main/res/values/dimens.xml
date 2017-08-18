@@ -17,4 +17,9 @@
     <!-- search bar dimens -->
     <dimen name="search_bar_side_margin">8dp</dimen>
     <dimen name="search_bar_top_margin">80dp</dimen>
+
+    <dimen name="big_font">32sp</dimen>
+    <dimen name="medium_font">18sp</dimen>
+
+    <dimen name="default_padding">16dp</dimen>
 </resources>

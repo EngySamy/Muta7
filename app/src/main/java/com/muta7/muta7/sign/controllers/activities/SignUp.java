@@ -100,7 +100,6 @@ public class SignUp extends AppCompatActivity {
             public void onClick(View v) {
                 if(!validation())
                     return;
-                AddUser();
 
                 progressBar.setVisibility(View.VISIBLE);
                 String password = Password.getText().toString().trim();
@@ -122,6 +121,7 @@ public class SignUp extends AppCompatActivity {
                                 //finish();
                                 Toast.makeText(SignUp.this, "Authentication Succeed." + task.getException(),
                                         Toast.LENGTH_SHORT).show();
+                                AddUser();
                                 sendVerificationEmail();
                             }
                         }

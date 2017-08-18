@@ -14,7 +14,7 @@ import com.muta7.muta7.user_profile.controllers.fragments.ReservationListFragmen
  * Created by DeLL on 03/08/2017.
  */
 
-public class UserProfilePagerAdapter extends FragmentStatePagerAdapter {
+public class UserProfilePagerAdapter{ /*extends FragmentStatePagerAdapter {
     private String[] tabTitles = new String[]{"Info", "My reservations"};
     //SparseArray<Fragment> registeredFragments = new SparseArray<>();
     private final FragmentManager mFragmentManager;
@@ -86,6 +86,6 @@ public class UserProfilePagerAdapter extends FragmentStatePagerAdapter {
             return POSITION_NONE;
         return POSITION_UNCHANGED;
     }
-
+*/
 }
 

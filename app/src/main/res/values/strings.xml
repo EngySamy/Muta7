@@ -1,7 +1,26 @@
 <resources>
     <string name="app_name">Muta7</string>
     <string name="action_settings">Settings</string>
+    <!--User profile strings-->
+    <string name="followers">Followers</string>
+    <string name="following_friends">Friends</string>
+    <string name="following_places">Places</string>
+    <string name="reservations">Reservations</string>
 
+    <string name="edit_profile">Edit Profile</string>
+    <string name="user_profile">My Profile</string>
+    <string name="change_password">Change Password</string>
+
+    <string name="edit_full_name">New Full Name</string>
+    <string name="edit_user_name">New User Name</string>
+    <string name="edit_email">New Email</string>
+    <string name="edit_mobile">New Mobile</string>
+
+    <string name="submit">Ok</string>
+    <string name="cancel">Cancel</string>
+
+
+    <!-- Create space strings-->
     <string name="create_space_title">Create Space</string>
     <string name="space_name_text">Space Name</string>
     <string name="space_description">Description</string>
@@ -147,4 +166,7 @@
     <string name="action_search">Search</string>
     <string name="find_space_button_text">Find Space</string>
     <string name="create_space_button_text">Create Space</string>
+    
+    
+    
 </resources>
