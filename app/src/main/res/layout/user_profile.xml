@@ -14,7 +14,17 @@
             android:id="@+id/fragment"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-        </FrameLayout>
+    </FrameLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/goTo"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"/>
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar"
@@ -194,6 +204,7 @@
 
 
             </LinearLayout>
+
 
 
         </android.support.design.widget.CollapsingToolbarLayout>

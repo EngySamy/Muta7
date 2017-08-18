@@ -12,11 +12,13 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -72,7 +74,7 @@ public class UserProfileActivity extends AppCompatActivity {
         mFragmentAtPos1=ReservationListFragment.newInstance(listener);
 
         getFragmentManager().beginTransaction().add( ll.getId(),mFragmentAtPos1).commit();
-
+        
 
         // Find the view pager that will allow the user to swipe between fragments
         //viewPager = (ViewPager) findViewById(R.id.UserPager);
@@ -88,18 +90,15 @@ public class UserProfileActivity extends AppCompatActivity {
             getSupportActionBar().setElevation(0);
             bar.setDisplayHomeAsUpEnabled(true);
         }
-       /* final AppBarLayout appBar = (AppBarLayout) findViewById(R.id.app_bar);
-        appBar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+
+        FloatingActionButton goToList=(FloatingActionButton) findViewById(R.id.goTo);
+        goToList.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-
-                appBar.setAlpha(1.0f - Math.abs(verticalOffset / (float)
-                        appBarLayout.getTotalScrollRange()));
-
-
+            public void onClick(View v) {
+                listener.onSwitchToNextFragment();
             }
         });
-*/
+
         //getUserData();
 
         Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.engy);

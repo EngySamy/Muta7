@@ -42,13 +42,6 @@ public class ReservationListFragment extends Fragment {
         rootView = inflater.inflate(R.layout.reservation_list, container, false);
 
         reservationList();
-        FloatingActionButton goToCalender=(FloatingActionButton) rootView.findViewById(R.id.goToCalender);
-        goToCalender.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reservationListFragmentListener.onSwitchToNextFragment();
-            }
-        });
         return rootView;
     }
 
