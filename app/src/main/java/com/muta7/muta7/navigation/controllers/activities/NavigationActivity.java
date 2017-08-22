@@ -26,6 +26,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.firebase.auth.FirebaseAuth;
 import com.muta7.muta7.R;
 import com.muta7.muta7.database.controllers.UserController;
+import com.muta7.muta7.database.models.Space;
 import com.muta7.muta7.navigation.controllers.fragments.FavouriteSpacesFragment;
 import com.muta7.muta7.navigation.controllers.fragments.FindSpaceFragment;
 import com.muta7.muta7.navigation.controllers.fragments.GroupsFragment;
@@ -35,7 +36,7 @@ import com.muta7.muta7.navigation.helpers.CircleTransform;
 import com.muta7.muta7.user_profile.controllers.activities.UserProfileActivity;
 
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment {
+        implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment, FavouriteSpacesFragment.OnCardClickListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -257,7 +258,8 @@ public class NavigationActivity extends AppCompatActivity
         drawer.addView(viewStub);
         filterLinearLayout = (LinearLayout) viewStub.inflate();
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
-        DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) (300 * scale + 0.5), ViewGroup.LayoutParams.MATCH_PARENT);
+        float dpwidth = getApplicationContext().getResources().getDisplayMetrics().widthPixels / scale;
+        DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) ((dpwidth * scale + 0.5)-(50*scale+0.5)), ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.END;
         filterLinearLayout.setLayoutParams(layoutParams);
     }
@@ -266,5 +268,10 @@ public class NavigationActivity extends AppCompatActivity
     public void removeFilterDrawer() {
         invalidateOptionsMenu();
         drawer.removeView(filterLinearLayout);
+    }
+
+    @Override
+    public void onCardClickListner(Space space) {
+
     }
 }
