@@ -49,7 +49,8 @@ import java.util.Locale;
 
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment,
-        FavouriteSpacesFragment.OnCardClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
+        FavouriteSpacesFragment.OnCardClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
+        HomeFragment.SearchBarFocus{
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -61,7 +62,7 @@ public class NavigationActivity extends AppCompatActivity
     private ViewStub viewStub;
     private LinearLayout filterLinearLayout;
     private Calendar myCalendar;
-
+    private boolean isSearchBarFocused;
     private final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private final String urlProfileImg = "https://firebasestorage.googleapis.com/v0/b/muta7-f44d2.appspot.com/o/IMG_1373.JPG?alt=media&token=8babffbb-a585-45de-8f6e-c6f5e28b3d19";
 
@@ -85,6 +86,7 @@ public class NavigationActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         initializeViewVars();
+        isSearchBarFocused = false;
         firebaseAuth = FirebaseAuth.getInstance();
         handler = new Handler();
         activityTitles = getResources().getStringArray(R.array.navigation_activity_titles);
@@ -199,6 +201,10 @@ public class NavigationActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if(isSearchBarFocused){
+            HomeFragment tempHomeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag(CURRENT_TAG);
+            tempHomeFragment.clearSearchBarFocus();
+            isSearchBarFocused = false;
         } else if (navItemIndex != 0) {
             navItemIndex = 0;
             CURRENT_TAG = TAG_HOME;
@@ -371,5 +377,10 @@ public class NavigationActivity extends AppCompatActivity
         selectedTime.setTextColor(getResources().getColor(R.color.colorAccent));
         activateResetButton();
 
+    }
+
+    @Override
+    public void searchBarFocusListener(boolean isFocused) {
+        isSearchBarFocused = isFocused;
     }
 }

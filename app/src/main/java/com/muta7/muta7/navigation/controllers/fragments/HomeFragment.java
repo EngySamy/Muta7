@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     private ConstraintLayout homeFragmentMainLayout;
     private SearchTrieTree searchTree;
     private String lastQuery;
+    private SearchBarFocus activitySearchBarFocusListener;
 
     public HomeFragment() {
     }
@@ -107,6 +108,7 @@ public class HomeFragment extends Fragment {
         searchBar.setOnFocusChangeListener(new FloatingSearchView.OnFocusChangeListener() {
             @Override
             public void onFocus() {
+                activitySearchBarFocusListener.searchBarFocusListener(true);
                 searchBar.showProgress();
                 ArrayList<Suggestion> suggestions = Suggestion.parseStringArrayList(searchTree.search(lastQuery));
                 if (suggestions == null)
@@ -117,7 +119,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onFocusCleared() {
-
+                activitySearchBarFocusListener.searchBarFocusListener(false);
             }
         });
 
@@ -172,5 +174,19 @@ public class HomeFragment extends Fragment {
         tempSpaces.add(space);
 
         searchTree = new SearchTrieTree(tempSpaces);
+    }
+
+    public interface SearchBarFocus{
+        void searchBarFocusListener(boolean isFocused);
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        activitySearchBarFocusListener = (SearchBarFocus) context;
+    }
+
+    public void clearSearchBarFocus(){
+        searchBar.clearFocus();
     }
 }
