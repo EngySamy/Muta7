@@ -1,53 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
     android:layout_height="match_parent"
     android:layout_gravity="end"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:orientation="horizontal">
+        android:background="@color/colorPrimaryDark">
 
         <ImageButton
+            android:id="@+id/b_submit_filter"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
             android:background="@color/colorPrimaryDark"
-            android:src="@mipmap/ic_done_white_24dp" />
+            android:src="@mipmap/ic_done_white_24dp"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:layout_width="0px"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="16dp"
-            android:layout_weight="1"
-            android:gravity="start|center_vertical"
+            android:layout_marginLeft="32dp"
+            android:gravity="center"
             android:text="Filter"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            app:layout_constraintStart_toEndOf="@id/b_submit_filter" />
 
         <Button
-            android:layout_width="0px"
+            android:id="@+id/reset_filter"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginRight="24dp"
-            android:layout_weight="1"
             android:background="@color/colorPrimaryDark"
-            android:gravity="end|center_vertical"
+            android:gravity="center"
             android:text="Reset"
             android:textColor="@color/gray_active_icon"
-            android:textSize="13sp" />
-    </LinearLayout>
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:clickable="false"/>
+    </android.support.constraint.ConstraintLayout>
 
 
     <!-- Space Type -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
@@ -56,16 +59,22 @@
             android:layout_marginTop="16dp"
             android:text="Space Type"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
+        <ImageView
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="24dp"
-            android:text="Any"
-            android:textColor="@color/dark_gray" />
-    </LinearLayout>
+            android:src="@mipmap/ic_expand_more_black_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="16dp"/>
+    </android.support.constraint.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
@@ -214,6 +223,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/date_filter"
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -229,6 +239,7 @@
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/selected_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
@@ -247,14 +258,15 @@
             android:layout_width="0px"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:id="@+id/time_filter">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="16dp"
-                android:text="Time"
+                android:text="Starting Time"
                 android:textColor="@color/black"
                 android:textSize="16sp" />
 
@@ -264,7 +276,8 @@
                 android:layout_marginBottom="16dp"
                 android:layout_marginLeft="24dp"
                 android:text="Any"
-                android:textColor="@color/dark_gray" />
+                android:textColor="@color/dark_gray"
+                android:id="@+id/selected_time"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -276,28 +289,33 @@
 
     <!-- Room Type -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:text="Space Type"
+            android:text="Room Type"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
+        <ImageView
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="24dp"
-            android:text="Any"
-            android:textColor="@color/dark_gray" />
-    </LinearLayout>
+            android:src="@mipmap/ic_expand_more_black_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="16dp"/>
+    </android.support.constraint.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"
@@ -306,28 +324,33 @@
 
     <!-- Amenities -->
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="24dp"
             android:layout_marginTop="16dp"
-            android:text="Space Type"
+            android:text="Aminities"
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
-        <TextView
+        <ImageView
+            android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginLeft="24dp"
-            android:text="Any"
-            android:textColor="@color/dark_gray" />
-    </LinearLayout>
+            android:src="@mipmap/ic_expand_more_black_18dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="16dp"/>
+    </android.support.constraint.ConstraintLayout>
 
     <View
         android:layout_width="match_parent"

@@ -1,5 +1,7 @@
 package com.muta7.muta7.navigation.controllers.activities;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,15 +13,21 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.format.DateFormat;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -35,8 +43,13 @@ import com.muta7.muta7.navigation.controllers.fragments.NewsFeedFragment;
 import com.muta7.muta7.navigation.helpers.CircleTransform;
 import com.muta7.muta7.user_profile.controllers.activities.UserProfileActivity;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class NavigationActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment, FavouriteSpacesFragment.OnCardClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment,
+        FavouriteSpacesFragment.OnCardClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -47,6 +60,7 @@ public class NavigationActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private ViewStub viewStub;
     private LinearLayout filterLinearLayout;
+    private Calendar myCalendar;
 
     private final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private final String urlProfileImg = "https://firebasestorage.googleapis.com/v0/b/muta7-f44d2.appspot.com/o/IMG_1373.JPG?alt=media&token=8babffbb-a585-45de-8f6e-c6f5e28b3d19";
@@ -254,6 +268,7 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     public void createFilterDrawer() {
         invalidateOptionsMenu();
+        myCalendar = Calendar.getInstance();
         viewStub = (ViewStub) getLayoutInflater().inflate(R.layout.stub_layout, null);
         drawer.addView(viewStub);
         filterLinearLayout = (LinearLayout) viewStub.inflate();
@@ -262,6 +277,7 @@ public class NavigationActivity extends AppCompatActivity
         DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) ((dpwidth * scale + 0.5)-(50*scale+0.5)), ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.END;
         filterLinearLayout.setLayoutParams(layoutParams);
+        setupFilter();
     }
 
     @Override
@@ -271,7 +287,89 @@ public class NavigationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onCardClickListner(Space space) {
+    public void onFavouriteSpaceCardClickListener(Space space) {
+
+    }
+
+    private void setupFilter(){
+        ImageButton submitButton = (ImageButton) filterLinearLayout.findViewById(R.id.b_submit_filter);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                drawer.closeDrawer(filterLinearLayout);
+                Toast.makeText(NavigationActivity.this, "Submit Filter", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        LinearLayout dateFilter = (LinearLayout) filterLinearLayout.findViewById(R.id.date_filter);
+        dateFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DatePickerDialog(NavigationActivity.this, NavigationActivity.this, myCalendar
+                        .get(Calendar.YEAR), myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+            }
+        });
+
+        LinearLayout timeFilter = (LinearLayout) filterLinearLayout.findViewById(R.id.time_filter);
+        timeFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new TimePickerDialog(NavigationActivity.this, NavigationActivity.this,
+                        myCalendar.HOUR_OF_DAY, myCalendar.MINUTE,
+                        android.text.format.DateFormat.is24HourFormat(NavigationActivity.this)).show();
+            }
+        });
+    }
+
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        myCalendar.set(Calendar.YEAR, year);
+        myCalendar.set(Calendar.MONTH, month);
+        myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String myFormat = "EEE, d MMM";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+        TextView selectedDate = (TextView) filterLinearLayout.findViewById(R.id.selected_date);
+        selectedDate.setText(sdf.format(myCalendar.getTime()));
+        selectedDate.setTextColor(getResources().getColor(R.color.colorAccent));
+        activateResetButton();
+    }
+
+    private void activateResetButton(){
+        final Button resetButton = (Button) filterLinearLayout.findViewById(R.id.reset_filter);
+        resetButton.setTextColor(getResources().getColor(R.color.white));
+        resetButton.setClickable(true);
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                resetButton.setTextColor(getResources().getColor(R.color.gray_active_icon));
+                resetButton.setClickable(false);
+                TextView selectedDate = (TextView) filterLinearLayout.findViewById(R.id.selected_date);
+                selectedDate.setText("Any");
+                selectedDate.setTextColor(getResources().getColor(R.color.dark_gray));
+
+                TextView selectedTime = (TextView) filterLinearLayout.findViewById(R.id.selected_time);
+                selectedTime.setText("Any");
+                selectedTime.setTextColor(getResources().getColor(R.color.dark_gray));
+            }
+        });
+    }
+
+    @Override
+    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+        myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        myCalendar.set(Calendar.MINUTE, minute);
+        String format = "";
+        if(DateFormat.is24HourFormat(this))
+            format = "HH:mm a";
+        else
+            format = "hh:mm a";
+
+        SimpleDateFormat sdf = new SimpleDateFormat(format, Locale.US);
+        TextView selectedTime = (TextView) filterLinearLayout.findViewById(R.id.selected_time);
+        selectedTime.setText(sdf.format(myCalendar.getTime()));
+        selectedTime.setTextColor(getResources().getColor(R.color.colorAccent));
+        activateResetButton();
 
     }
 }

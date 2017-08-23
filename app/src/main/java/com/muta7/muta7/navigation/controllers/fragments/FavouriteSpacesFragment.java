@@ -51,10 +51,10 @@ public class FavouriteSpacesFragment extends Fragment implements FavouriteSpaces
 
     @Override
     public void onClick(Space space) {
-        activityListener.onCardClickListner(space);
+        activityListener.onFavouriteSpaceCardClickListener(space);
     }
 
     public interface OnCardClickListener{
-        void onCardClickListner(Space space);
+        void onFavouriteSpaceCardClickListener(Space space);
     }
 }
