@@ -20,11 +20,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewStub;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -41,6 +43,8 @@ import com.muta7.muta7.navigation.controllers.fragments.GroupsFragment;
 import com.muta7.muta7.navigation.controllers.fragments.HomeFragment;
 import com.muta7.muta7.navigation.controllers.fragments.NewsFeedFragment;
 import com.muta7.muta7.navigation.helpers.CircleTransform;
+import com.muta7.muta7.navigation.helpers.DistrictSpinnerAdapter;
+import com.muta7.muta7.navigation.helpers.GovernorateSpinnerAdapter;
 import com.muta7.muta7.user_profile.controllers.activities.UserProfileActivity;
 
 import java.text.SimpleDateFormat;
@@ -50,7 +54,7 @@ import java.util.Locale;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment,
         FavouriteSpacesFragment.OnCardClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
-        HomeFragment.SearchBarFocus, FindSpaceFragment.OnCardClickListener{
+        HomeFragment.SearchBarFocus, FindSpaceFragment.OnCardClickListener {
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -63,6 +67,7 @@ public class NavigationActivity extends AppCompatActivity
     private LinearLayout filterLinearLayout;
     private Calendar myCalendar;
     private boolean isSearchBarFocused;
+
     private final String urlNavHeaderBg = "http://api.androidhive.info/images/nav-menu-header-bg.jpg";
     private final String urlProfileImg = "https://firebasestorage.googleapis.com/v0/b/muta7-f44d2.appspot.com/o/IMG_1373.JPG?alt=media&token=8babffbb-a585-45de-8f6e-c6f5e28b3d19";
 
@@ -201,10 +206,10 @@ public class NavigationActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else if(drawer.isDrawerOpen(Gravity.END)){
+        } else if (drawer.isDrawerOpen(Gravity.END)) {
             drawer.closeDrawer(Gravity.END);
-        } else if(isSearchBarFocused){
-            HomeFragment tempHomeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag(CURRENT_TAG);
+        } else if (isSearchBarFocused) {
+            HomeFragment tempHomeFragment = (HomeFragment) getSupportFragmentManager().findFragmentByTag(CURRENT_TAG);
             tempHomeFragment.clearSearchBarFocus();
             isSearchBarFocused = false;
         } else if (navItemIndex != 0) {
@@ -266,7 +271,7 @@ public class NavigationActivity extends AppCompatActivity
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if(CURRENT_TAG == TAG_FIND_SPACE)
+        if (CURRENT_TAG == TAG_FIND_SPACE)
             menu.getItem(0).setVisible(true);
         else
             menu.getItem(0).setVisible(false);
@@ -282,7 +287,7 @@ public class NavigationActivity extends AppCompatActivity
         filterLinearLayout = (LinearLayout) viewStub.inflate();
         float scale = getApplicationContext().getResources().getDisplayMetrics().density;
         float dpwidth = getApplicationContext().getResources().getDisplayMetrics().widthPixels / scale;
-        DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) ((dpwidth * scale + 0.5)-(50*scale+0.5)), ViewGroup.LayoutParams.MATCH_PARENT);
+        DrawerLayout.LayoutParams layoutParams = new DrawerLayout.LayoutParams((int) ((dpwidth * scale + 0.5) - (50 * scale + 0.5)), ViewGroup.LayoutParams.MATCH_PARENT);
         layoutParams.gravity = Gravity.END;
         filterLinearLayout.setLayoutParams(layoutParams);
         setupFilter();
@@ -299,7 +304,45 @@ public class NavigationActivity extends AppCompatActivity
 
     }
 
-    private void setupFilter(){
+    private void setupFilter() {
+
+        Spinner governorateSpinner = (Spinner) filterLinearLayout.findViewById(R.id.governorate_spinner);
+        GovernorateSpinnerAdapter governorateAdapter = new GovernorateSpinnerAdapter(this,
+                getResources().getStringArray(R.array.governorates));
+        governorateSpinner.setAdapter(governorateAdapter);
+        governorateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position != 0){
+                    activateResetButton();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        Spinner districtSpinner = (Spinner) filterLinearLayout.findViewById(R.id.district_spinner);
+        DistrictSpinnerAdapter districtAdapter = new DistrictSpinnerAdapter(this,
+                getResources().getStringArray(R.array.governorates));
+        districtSpinner.setAdapter(districtAdapter);
+        districtSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(position != 0){
+                    activateResetButton();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         ImageButton submitButton = (ImageButton) filterLinearLayout.findViewById(R.id.b_submit_filter);
         submitButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,7 +386,7 @@ public class NavigationActivity extends AppCompatActivity
         activateResetButton();
     }
 
-    private void activateResetButton(){
+    private void activateResetButton() {
         final Button resetButton = (Button) filterLinearLayout.findViewById(R.id.reset_filter);
         resetButton.setTextColor(getResources().getColor(R.color.white));
         resetButton.setClickable(true);
@@ -359,6 +402,17 @@ public class NavigationActivity extends AppCompatActivity
                 TextView selectedTime = (TextView) filterLinearLayout.findViewById(R.id.selected_time);
                 selectedTime.setText("Any");
                 selectedTime.setTextColor(getResources().getColor(R.color.dark_gray));
+
+                Spinner selectedGovernorate = (Spinner) filterLinearLayout.findViewById(R.id.governorate_spinner);
+                GovernorateSpinnerAdapter governorateAdapter = new GovernorateSpinnerAdapter(NavigationActivity.this,
+                        getResources().getStringArray(R.array.governorates));
+                selectedGovernorate.setAdapter(governorateAdapter);
+
+                Spinner selectedDistrict = (Spinner) filterLinearLayout.findViewById(R.id.district_spinner);
+                DistrictSpinnerAdapter districtAdapter = new DistrictSpinnerAdapter(NavigationActivity.this,
+                        getResources().getStringArray(R.array.governorates));
+                selectedDistrict.setAdapter(districtAdapter);
+
             }
         });
     }
@@ -368,7 +422,7 @@ public class NavigationActivity extends AppCompatActivity
         myCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         myCalendar.set(Calendar.MINUTE, minute);
         String format = "";
-        if(DateFormat.is24HourFormat(this))
+        if (DateFormat.is24HourFormat(this))
             format = "HH:mm a";
         else
             format = "hh:mm a";
@@ -390,4 +444,5 @@ public class NavigationActivity extends AppCompatActivity
     public void onFindSpaceCardClickListener(Space space) {
 
     }
+
 }
