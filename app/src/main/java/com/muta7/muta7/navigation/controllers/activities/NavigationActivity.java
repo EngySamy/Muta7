@@ -50,7 +50,7 @@ import java.util.Locale;
 public class NavigationActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FindSpaceFragment.OnCreateFindSpaceFragment,
         FavouriteSpacesFragment.OnCardClickListener, DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener,
-        HomeFragment.SearchBarFocus{
+        HomeFragment.SearchBarFocus, FindSpaceFragment.OnCardClickListener{
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -159,8 +159,8 @@ public class NavigationActivity extends AppCompatActivity
             public void run() {
                 Fragment fragment = getFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                        android.R.anim.fade_out);
+                fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left,
+                        android.R.anim.slide_out_right);
                 fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
                 fragmentTransaction.commitAllowingStateLoss();
             }
@@ -201,6 +201,8 @@ public class NavigationActivity extends AppCompatActivity
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+        } else if(drawer.isDrawerOpen(Gravity.END)){
+            drawer.closeDrawer(Gravity.END);
         } else if(isSearchBarFocused){
             HomeFragment tempHomeFragment = (HomeFragment)getSupportFragmentManager().findFragmentByTag(CURRENT_TAG);
             tempHomeFragment.clearSearchBarFocus();
@@ -382,5 +384,10 @@ public class NavigationActivity extends AppCompatActivity
     @Override
     public void searchBarFocusListener(boolean isFocused) {
         isSearchBarFocused = isFocused;
+    }
+
+    @Override
+    public void onFindSpaceCardClickListener(Space space) {
+
     }
 }
